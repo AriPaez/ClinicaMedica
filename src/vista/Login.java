@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.sql.PreparedStatement;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -13,10 +14,19 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import controlador.ControlLogin;
+import modelo.BBDD;
+
 public class Login extends JFrame {
 
-
-	public Login() {
+	private JTextField ingresoDNI;
+	private JPasswordField ingresoPass;
+	private JButton iniciarSesion;
+	private JButton registrar;
+	private JComboBox cargo;
+	
+	public Login() 
+	{
 
 		setBounds(300,300,300,300);
 		setResizable(false);
@@ -40,33 +50,68 @@ public class Login extends JFrame {
 		
 		JLabel msjeDNI=new JLabel("DNI");
 		laminaCentralIngresoDatos.add(msjeDNI);
-		JTextField ingresoDNI=new JTextField();
+		ingresoDNI=new JTextField();
 		laminaCentralIngresoDatos.add(ingresoDNI);
 		
 		
 		JLabel msjePass=new JLabel("Password");
 		laminaCentralIngresoDatos.add(msjePass);
-		JPasswordField ingresoPass=new JPasswordField();
+		ingresoPass=new JPasswordField();
 		laminaCentralIngresoDatos.add(ingresoPass);
 		
 		
 		JLabel msjeCargo=new JLabel("Cargo");
 		laminaCentralIngresoDatos.add(msjeCargo);
-		JComboBox cargo=new JComboBox();
+		cargo=new JComboBox();
 		cargo.addItem("Medico");
 		cargo.addItem("Administrador");
 		laminaCentralIngresoDatos.add(cargo);
 		
 		JPanel laminaInferior=new JPanel();
 		laminaInferior.setLayout(new FlowLayout());
-		JButton iniciarSesion=new JButton("Iniciar Sesion");
-		JButton registrase=new JButton("Registrase");
+		iniciarSesion=new JButton("Iniciar Sesion");
+		registrar=new JButton("Registrase");
 		laminaInferior.add(iniciarSesion);
-		laminaInferior.add(registrase);
+		laminaInferior.add(registrar);
 		
 		add(laminaSuperior,BorderLayout.NORTH);
 		add(laminaCentral,BorderLayout.CENTER);
 		add(laminaInferior,BorderLayout.SOUTH);
+		
+		
+		
+		
+		iniciarSesion.addActionListener(new ControlLogin(this));
+		registrar.addActionListener(new ControlLogin());
+		
+		 
 	}
+	
+	public JButton getIniciarSesion() 
+	{
+		return iniciarSesion;
+	}
+	
+	public JButton getRegistrar() 
+	{
+		return registrar;
+	}
+	
+	public JTextField getIngresoDNI()
+	{
+		return ingresoDNI;
+	}
+
+	public JPasswordField getIngresoPass() 
+	{
+		return ingresoPass;
+	}
+
+	public JComboBox getCargo()
+	{
+		return cargo;
+	}
+	
+	
 
 }
