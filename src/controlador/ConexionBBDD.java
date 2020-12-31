@@ -2,9 +2,7 @@ package controlador;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
@@ -17,9 +15,8 @@ public class ConexionBBDD {
 	{
 		try 
 		{
-			conexionABBDD = DriverManager
-			.getConnection("jdbc:sqlserver://;database=SistemaMedico;integratedSecurity=true;");
-		
+			conexionABBDD = DriverManager.getConnection("jdbc:sqlserver://;database=SistemaMedico;integratedSecurity=true;");
+			 
 		} catch (SQLException e) 
 		{
 			
@@ -27,15 +24,25 @@ public class ConexionBBDD {
 			"No se ha podido conecta a la BBDD 'Sistema Médico'","BBDD",2, null);
 			 
 		}
-
+  	
 	}
-	
-	
-	
-	
+
 	public Connection getConexionBBDD()
 	{
 		return conexionABBDD;
+	}
+	
+	public void cerrarConexionBBDD()
+	{
+		try 
+		{
+			conexionABBDD.close();
+		} 
+		catch (SQLException e)
+		{
+			 
+			e.printStackTrace();
+		}
 	}
 	
 }

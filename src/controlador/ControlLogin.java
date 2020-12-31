@@ -6,21 +6,19 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import vista.Login;
+import vista.Registro;
 
 public class ControlLogin implements ActionListener
 {
-	private Login login;
+	 
 	private PreparedStatement autenticacion;
 	private ConexionBBDD conexionBBDD;
-	
-	//Constructor por defecto.
-	public ControlLogin()
-	{
-		 
-	}
+	private Login login;
+	private Registro r; 
 	
 	public ControlLogin(Login l)
 	{
@@ -32,34 +30,57 @@ public class ControlLogin implements ActionListener
 	public void actionPerformed(ActionEvent e) 
 	{
 		 Object botonElegido=e.getSource();
+	 
 		 
-		 if(botonElegido==login.getRegistrar())
+		 if(botonElegido==login.getIniciarSesion())
 		 {
+			  String cargo=(String)login.getCargo().getSelectedItem();
 			 
-			 if(login.getCargo().getSelectedItem().equals("Medico"))
+			  
+			 if(cargo.equals("Medico"))
 			 {
 				try 
 				{
+					 
 					autenticacion=conexionBBDD.getConexionBBDD().
-					prepareStatement("SELECT dni,password FROM "
-					+ "login.getCargo().getSelectedItem()"
-					+ "WHERE dni=? and password=?");
-					
-					autenticacion.setString(1,login.getIngresoDNI().getSelectedText());
-					autenticacion.setString(2,login.getIngresoPass().getSelectedText());
+					prepareStatement("SELECT dniMedico,contrasenia FROM Medico WHERE dniMedico=? and contrasenia=?");
+					 
+					autenticacion.setString(1,login.getIngresoDNI().getText());
+					char[] arrayC = login.getIngresoPass().getPassword();
+					String pass = new String(arrayC);
+					autenticacion.setString(2,pass);
+					 
 					
 					ResultSet tabla = autenticacion.executeQuery();
 					
-					if (tabla.absolute(1))
+				 
+					boolean sesision=false;
+					
+					while(tabla.next() && !sesision)
 					{
-						  //Aca se llama a la ventana del medico.
+						sesision=true;
+						 
+					}
+					
+					if(sesision)
+					{
+						  JOptionPane.showMessageDialog(null,
+						  "Iniciado Correctamente","BBDD",1, null);
+						  
+						  //Aca se llama a la ventana del Medico.
+						  login.dispose();
+						  
+						  
+						  
 					}
 					else
 					{
-						 JOptionPane.showMessageDialog(null,
-						"No se ha encontrado el usuario","BBDD",2, null); 
+						JOptionPane.showMessageDialog(null,
+						 "No encontrado. Vuelva a ingresar","BBDD",2, null);
 					}
+					  
 					
+					conexionBBDD.cerrarConexionBBDD();
 				}
 				catch (SQLException e1) 
 				{
@@ -67,29 +88,43 @@ public class ControlLogin implements ActionListener
 					 "No se ha encontrado el usuario","BBDD",2, null);
 				}
 			 }
-			 else
+			 else 
 			 {
 				 try 
 				 {
+					 
 					autenticacion=conexionBBDD.getConexionBBDD().
-					prepareStatement("SELECT dni,password FROM "
-					+ "login.getCargo().getSelectedItem()"
-					+ "WHERE dni=? and password=?");
+					prepareStatement("SELECT dniAdministrador,contrasenia FROM Administrador WHERE dniAdministrador=? and contrasenia=?");
 					
-					autenticacion.setString(1,login.getIngresoDNI().getSelectedText());
-					autenticacion.setString(2,login.getIngresoPass().getSelectedText());
-					
+					autenticacion.setString(1,login.getIngresoDNI().getText());
+					char[] arrayC = login.getIngresoPass().getPassword();
+					String pass = new String(arrayC);
+					autenticacion.setString(2,pass);
 					ResultSet tabla = autenticacion.executeQuery();
+					 
+					boolean sesision=false;
 					
-					if (tabla.absolute(1))
+					while(tabla.next() && !sesision)
 					{
-						  //Aca se llama a la ventana del administrador.
+						sesision=true;
+						 
+					}
+					
+					if(sesision)
+					{
+						  
+						  JOptionPane.showMessageDialog(null,
+						  "Iniciado Correctamente","BBDD",1, null);
+						  
+						//Aca se llama a la ventana del administrador.
 					}
 					else
 					{
-						 JOptionPane.showMessageDialog(null,
-						"No se ha encontrado el usuario","BBDD",2, null); 
+						   
+						  JOptionPane.showMessageDialog(null,
+						  "No encontrado. Vuelva a ingresar","BBDD",2, null);
 					}
+					 
 				 
 				 }
 				 catch (SQLException e1)
@@ -97,13 +132,21 @@ public class ControlLogin implements ActionListener
 					 JOptionPane.showMessageDialog(null,
 					 "No se ha encontrado el usuario","BBDD",2, null);
 				 }
+				 
+				 conexionBBDD.cerrarConexionBBDD();
 			 }
-			 
-			 
+		 
 		 }
-		 else
+		 else if(botonElegido==login.getRegistrar())
 		 {
+			 //Acá se llama a la ventana de registro.
 			 
+			 //Cierre de la vetana login.
+			 login.dispose();
+			  
+			 r=new Registro();
+			 r.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			 r.setVisible(true);
 		 }
 		 
 		 

@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.sql.PreparedStatement;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -15,7 +14,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import controlador.ControlLogin;
-import modelo.BBDD;
 
 public class Login extends JFrame {
 
@@ -24,94 +22,80 @@ public class Login extends JFrame {
 	private JButton iniciarSesion;
 	private JButton registrar;
 	private JComboBox cargo;
-	
-	public Login() 
-	{
 
-		setBounds(300,300,300,300);
+	public Login() {
+
+		setTitle("Login");
+		setBounds(300, 300, 300, 300);
 		setResizable(false);
 		setLayout(new BorderLayout());
-		
-		
-		JPanel laminaSuperior=new JPanel();
+
+		JPanel laminaSuperior = new JPanel();
 		laminaSuperior.setLayout(new FlowLayout());
-		JLabel tituloPrincipal=new JLabel("SISTEMA CLÍNICO");
-		tituloPrincipal.setFont(new Font("Arial",Font.BOLD,30));
+		JLabel tituloPrincipal = new JLabel("SISTEMA CLÍNICO");
+		tituloPrincipal.setFont(new Font("Arial", Font.BOLD, 30));
 		laminaSuperior.add(tituloPrincipal);
-		 
-		
-		JPanel laminaCentral=new JPanel();
+
+		JPanel laminaCentral = new JPanel();
 		laminaCentral.setLayout(new BorderLayout());
-		
-		JPanel laminaCentralIngresoDatos=new JPanel();
-		laminaCentralIngresoDatos.setLayout(new GridLayout(3,3));
-		laminaCentral.add(laminaCentralIngresoDatos,BorderLayout.NORTH);
-		 
-		
-		JLabel msjeDNI=new JLabel("DNI");
+
+		JPanel laminaCentralIngresoDatos = new JPanel();
+		laminaCentralIngresoDatos.setLayout(new GridLayout(3, 3));
+		laminaCentral.add(laminaCentralIngresoDatos, BorderLayout.NORTH);
+
+		JLabel msjeDNI = new JLabel("DNI");
 		laminaCentralIngresoDatos.add(msjeDNI);
-		ingresoDNI=new JTextField();
+		ingresoDNI = new JTextField();
 		laminaCentralIngresoDatos.add(ingresoDNI);
-		
-		
-		JLabel msjePass=new JLabel("Password");
+
+		JLabel msjePass = new JLabel("Password");
 		laminaCentralIngresoDatos.add(msjePass);
-		ingresoPass=new JPasswordField();
+		ingresoPass = new JPasswordField();
 		laminaCentralIngresoDatos.add(ingresoPass);
-		
-		
-		JLabel msjeCargo=new JLabel("Cargo");
+
+		JLabel msjeCargo = new JLabel("Cargo");
 		laminaCentralIngresoDatos.add(msjeCargo);
-		cargo=new JComboBox();
+		cargo = new JComboBox();
 		cargo.addItem("Medico");
 		cargo.addItem("Administrador");
 		laminaCentralIngresoDatos.add(cargo);
-		
-		JPanel laminaInferior=new JPanel();
+
+		JPanel laminaInferior = new JPanel();
 		laminaInferior.setLayout(new FlowLayout());
-		iniciarSesion=new JButton("Iniciar Sesion");
-		registrar=new JButton("Registrase");
+		iniciarSesion = new JButton("Iniciar Sesion");
+		registrar = new JButton("Registrarse");
 		laminaInferior.add(iniciarSesion);
 		laminaInferior.add(registrar);
-		
-		add(laminaSuperior,BorderLayout.NORTH);
-		add(laminaCentral,BorderLayout.CENTER);
-		add(laminaInferior,BorderLayout.SOUTH);
-		
-		
-		
-		
-		iniciarSesion.addActionListener(new ControlLogin(this));
-		registrar.addActionListener(new ControlLogin());
-		
-		 
+
+		add(laminaSuperior, BorderLayout.NORTH);
+		add(laminaCentral, BorderLayout.CENTER);
+		add(laminaInferior, BorderLayout.SOUTH);
+
+		ControlLogin controlBotones = new ControlLogin(this);
+
+		iniciarSesion.addActionListener(controlBotones);
+		registrar.addActionListener(controlBotones);
+
 	}
-	
-	public JButton getIniciarSesion() 
-	{
+
+	public JButton getIniciarSesion() {
 		return iniciarSesion;
 	}
-	
-	public JButton getRegistrar() 
-	{
+
+	public JButton getRegistrar() {
 		return registrar;
 	}
-	
-	public JTextField getIngresoDNI()
-	{
+
+	public JTextField getIngresoDNI() {
 		return ingresoDNI;
 	}
 
-	public JPasswordField getIngresoPass() 
-	{
+	public JPasswordField getIngresoPass() {
 		return ingresoPass;
 	}
 
-	public JComboBox getCargo()
-	{
+	public JComboBox getCargo() {
 		return cargo;
 	}
-	
-	
 
 }
