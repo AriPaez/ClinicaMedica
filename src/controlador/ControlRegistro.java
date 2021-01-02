@@ -65,9 +65,11 @@ public class ControlRegistro implements ActionListener {
 			}
 
 			JOptionPane.showMessageDialog(null, "Registrado Correctamente'", "BBDD", 1, null);
-
+			
+			//Cierre de la ventana Registro.
 			registro.dispose();
 			
+			//Una vez registrado, se abra nuevamente la ventana login.
 			Login l=new Login();
 			l.setVisible(true);
 			

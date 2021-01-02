@@ -1,6 +1,7 @@
 package vista;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -26,10 +27,12 @@ public class Login extends JFrame {
 	public Login() {
 
 		setTitle("Login");
-		setBounds(300, 300, 300, 300);
+		setSize(300, 300);
+		setLocationRelativeTo(null);
 		setResizable(false);
 		setLayout(new BorderLayout());
-
+		setBackground(Color.BLUE);
+		
 		JPanel laminaSuperior = new JPanel();
 		laminaSuperior.setLayout(new FlowLayout());
 		JLabel tituloPrincipal = new JLabel("SISTEMA CLÍNICO");

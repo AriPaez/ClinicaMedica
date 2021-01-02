@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 
 import vista.Login;
 import vista.Registro;
+import vista.VentanaMedico;
 
 public class ControlLogin implements ActionListener
 {
@@ -67,10 +68,13 @@ public class ControlLogin implements ActionListener
 						  JOptionPane.showMessageDialog(null,
 						  "Iniciado Correctamente","BBDD",1, null);
 						  
-						  //Aca se llama a la ventana del Medico.
+						  //Cierre de la ventana login.
 						  login.dispose();
-						  
-						  
+						
+						  //Aca se llama a la ventana del Medico.
+						  VentanaMedico v=new VentanaMedico();
+						  v.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+						  v.setVisible(true);
 						  
 					}
 					else
