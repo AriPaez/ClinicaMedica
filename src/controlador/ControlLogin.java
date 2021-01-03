@@ -66,8 +66,14 @@ public class ControlLogin implements ActionListener {
 
 						conexionBBDD.cerrarConexionBBDD();
 
-					} else {
+					}
+					else
+					{
 						JOptionPane.showMessageDialog(null, "No encontrado. Vuelva a ingresar", "BBDD", 2, null);
+						
+						//Reseteo de datos ingresados login
+						 login.setIngresoDNI("");
+						 login.setIngresoPass("");
 					}
 
 				} catch (SQLException e1) {
@@ -108,6 +114,10 @@ public class ControlLogin implements ActionListener {
 					else {
 
 						JOptionPane.showMessageDialog(null, "No encontrado. Vuelva a ingresar", "BBDD", 2, null);
+						
+						//Reseteo de datos ingresados login
+						 login.setIngresoDNI("");
+						 login.setIngresoPass("");
 					}
 
 				} catch (SQLException e1) {

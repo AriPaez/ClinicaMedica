@@ -100,5 +100,14 @@ public class Login extends JFrame {
 	public JComboBox getCargo() {
 		return cargo;
 	}
+	
+	public void setIngresoDNI(String ingresoDNI) {
+		this.ingresoDNI.setText(ingresoDNI);
+	}
+
+	public void setIngresoPass(String ingresoPass) {
+		this.ingresoPass.setText(ingresoPass);
+	}
+
 
 }
