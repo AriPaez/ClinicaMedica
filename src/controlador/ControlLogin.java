@@ -20,7 +20,7 @@ public class ControlLogin implements ActionListener {
 	private ConexionBBDD conexionBBDD;
 	private Login login;
 	private Registro r;
-
+	private String dniUsuario;
 	public ControlLogin(Login l) {
 		login = l;
 		conexionBBDD = new ConexionBBDD();
@@ -30,7 +30,8 @@ public class ControlLogin implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		Object botonElegido = e.getSource();
 
-		if (botonElegido == login.getIniciarSesion()) {
+		if (botonElegido==login.getIniciarSesion()) {
+			
 			String cargo = (String) login.getCargo().getSelectedItem();
 
 			if (cargo.equals("Medico")) {
@@ -87,8 +88,9 @@ public class ControlLogin implements ActionListener {
 
 					autenticacion.setString(1, login.getIngresoDNI().getText());
 					char[] arrayC = login.getIngresoPass().getPassword();
-					String pass = new String(arrayC);
-					autenticacion.setString(2, pass);
+					dniUsuario = new String(arrayC);
+					
+					autenticacion.setString(2, dniUsuario);
 					ResultSet tabla = autenticacion.executeQuery();
 
 					boolean sesion = false;
@@ -104,9 +106,9 @@ public class ControlLogin implements ActionListener {
 
 						login.dispose();
 						// Aca se llama a la ventana del administrador.
-						VentanaAdministrador vA = new VentanaAdministrador();
-						vA.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-						vA.setVisible(true);
+						VentanaAdministrador v = new VentanaAdministrador();
+						v.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+						v.setVisible(true);
 
 						conexionBBDD.cerrarConexionBBDD();
 
@@ -138,5 +140,5 @@ public class ControlLogin implements ActionListener {
 		}
 
 	}
-
+ 
 }

@@ -12,9 +12,10 @@ import javax.swing.JTextField;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 
-public class TurnoPaciente extends JFrame 
+public class RegistroTurno extends JFrame 
 {
-	public TurnoPaciente() {
+	
+	public RegistroTurno() {
 		
 		//Caracteristica ventana.
 		setSize(460, 400);
@@ -40,6 +41,7 @@ public class TurnoPaciente extends JFrame
 		msjeTurnosDisponibles.setFont(new Font("Arial", Font.PLAIN, 20));
 		msjeTurnosDisponibles.setBounds(10, 48, 246, 33);
 		laminaPrincipal.add(msjeTurnosDisponibles);
+		 
 		
 	}
 }
