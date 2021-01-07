@@ -18,12 +18,12 @@ import controlador.ControlLogin;
 
 public class Login extends JFrame {
 
-	private JTextField ingresoDNI;
+	private static JTextField  ingresoDNI;
 	private JPasswordField ingresoPass;
 	private JButton iniciarSesion;
 	private JButton registrar;
 	private JComboBox cargo;
-
+	 
 	public Login() {
 
 		setTitle("Login");
@@ -89,10 +89,10 @@ public class Login extends JFrame {
 		return registrar;
 	}
 
-	public JTextField getIngresoDNI() {
+	public  static JTextField getIngresoDNI() {
 		return ingresoDNI;
 	}
-
+	 
 	public JPasswordField getIngresoPass() {
 		return ingresoPass;
 	}
@@ -108,6 +108,6 @@ public class Login extends JFrame {
 	public void setIngresoPass(String ingresoPass) {
 		this.ingresoPass.setText(ingresoPass);
 	}
-
-
+	
+	 
 }
