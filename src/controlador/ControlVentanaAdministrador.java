@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
 import vista.VentanaAdministrador;
+import vista.VentanaAsignacionTurno;
 import vista.VentanaRegistrarPaciente;
 
 public class ControlVentanaAdministrador implements ActionListener 
@@ -34,8 +35,10 @@ public class ControlVentanaAdministrador implements ActionListener
 		}
 		else if(botonSeleccionado==ventanaAdministrador.getAsignarTurno())
 		{
-			
-			System.out.println("asignar turno");
+			VentanaAsignacionTurno vAT=new VentanaAsignacionTurno();
+			ventanaAdministrador.dispose();
+			ventanaAdministrador.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			vAT.setVisible(true);
 		}
 		else if(botonSeleccionado==ventanaAdministrador.getConsultarTurno())
 		{

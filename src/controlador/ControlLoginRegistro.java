@@ -1,33 +1,31 @@
 package controlador;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
 import vista.Login;
-import vista.Registro;
+import vista.TipoUsuario;
 import vista.VentanaAdministrador;
 import vista.VentanaMedico;
 
-public class ControlLogin implements ActionListener {
+public class ControlLoginRegistro implements ActionListener {
 
 	private PreparedStatement autenticacion;
 	private ConexionBBDD conexionBBDD;
 	private Login login;
-	private Registro r;
+	private TipoUsuario tipoUsuario;
 	private String dniUsuario;
-	public ControlLogin(Login l) {
+	public ControlLoginRegistro(Login l) {
 		login = l;
 		conexionBBDD = new ConexionBBDD();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
 		Object botonElegido = e.getSource();
 
 		if (botonElegido==login.getIniciarSesion()) {
@@ -133,10 +131,10 @@ public class ControlLogin implements ActionListener {
 			// Cierre de la vetana login.
 			login.dispose();
 
-			// Acá se llama a la ventana de registro.
-			r = new Registro();
-			r.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			r.setVisible(true);
+			// Acá se llama a la ventana de tipoUsuario.
+			tipoUsuario = new TipoUsuario();
+			tipoUsuario.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			tipoUsuario.setVisible(true);
 		}
 
 	}

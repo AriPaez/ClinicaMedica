@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 
 import controlador.ControlRegistro;
 
-public class Registro extends JFrame {
+public class RegistroAdministrador extends JFrame {
 
 	private JTextField ingresoDNI;
 	private JPasswordField ingresoPass;
@@ -28,9 +28,9 @@ public class Registro extends JFrame {
 	private JLabel msjeApellido;
 	private JTextField ingresoApellido;
 	 
-	public Registro() 
+	public RegistroAdministrador() 
 	{
-		setTitle("Registro");
+		setTitle("Registro Administrador");
 		setBounds(300, 300, 300, 300);
 		setResizable(false);
 		setLayout(new BorderLayout());
@@ -45,7 +45,7 @@ public class Registro extends JFrame {
 		laminaCentral.setLayout(new BorderLayout());
 
 		JPanel laminaCentralIngresoDatos = new JPanel();
-		laminaCentralIngresoDatos.setLayout(new GridLayout(6,6));
+		laminaCentralIngresoDatos.setLayout(new GridLayout(5,5));
 		laminaCentral.add(laminaCentralIngresoDatos, BorderLayout.NORTH);
 
 		this.msjePrimerNombre=new JLabel("Primer Nombre");
@@ -72,12 +72,7 @@ public class Registro extends JFrame {
 		ingresoPass = new JPasswordField();
 		laminaCentralIngresoDatos.add(ingresoPass);
 
-		JLabel msjeCargo = new JLabel("Cargo");
-		laminaCentralIngresoDatos.add(msjeCargo);
-		Tipocargo = new JComboBox();
-		Tipocargo.addItem("Medico");
-		Tipocargo.addItem("Administrador");
-		laminaCentralIngresoDatos.add(Tipocargo);
+	 
 
 		JPanel laminaInferior = new JPanel();
 		laminaInferior.setLayout(new FlowLayout());

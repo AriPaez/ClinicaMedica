@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import controlador.ControlLogin;
+import controlador.ControlLoginRegistro;
 
 public class Login extends JFrame {
 
@@ -74,7 +74,7 @@ public class Login extends JFrame {
 		add(laminaCentral, BorderLayout.CENTER);
 		add(laminaInferior, BorderLayout.SOUTH);
 
-		ControlLogin controlBotones = new ControlLogin(this);
+		ControlLoginRegistro controlBotones = new ControlLoginRegistro(this);
 
 		iniciarSesion.addActionListener(controlBotones);
 		registrar.addActionListener(controlBotones);

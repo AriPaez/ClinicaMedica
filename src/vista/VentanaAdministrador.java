@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import controlador.ControlLogin;
+import controlador.ControlLoginRegistro;
 import controlador.ControlVentanaAdministrador;
 
 public class VentanaAdministrador extends JFrame {
