@@ -42,9 +42,8 @@ public class ControlRegistro implements ActionListener {
  
 			
 			if (ControlTipoUsuario.getTipoUsuarioElegido()=="Medico") {
-				System.out.println("Hola, regisntrando medico");
-				 
-				
+
+
 				CallableStatement registrarMedico = conexionBBDD.getConexionBBDD()
 				.prepareCall("{call registrarMedico(?,?,?,?,?,?,?,?)}");
 
