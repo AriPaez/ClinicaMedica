@@ -26,6 +26,8 @@ public class ControlLoginRegistro implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
+		 
+		
 		Object botonElegido = e.getSource();
 
 		if (botonElegido==login.getIniciarSesion()) {
