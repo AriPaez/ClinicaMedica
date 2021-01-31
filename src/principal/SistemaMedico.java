@@ -3,7 +3,6 @@ package principal;
 import javax.swing.JFrame;
 
 import vista.Login;
-import vista.VentanaAsignacionTurno;
 public class SistemaMedico 
 {
 

@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
 import vista.VentanaAdministrador;
+import vista.VentanaAsignacionSobreTurno;
 import vista.VentanaAsignacionTurno;
 import vista.VentanaRegistrarPaciente;
 
@@ -48,8 +49,12 @@ public class ControlVentanaAdministrador implements ActionListener
 		}
 		else if(botonSeleccionado==ventanaAdministrador.getSobreTurno())
 		{
-			
-			System.out.println("sobreturnp");
+			//Cierre de la ventanaAdministrador.
+			ventanaAdministrador.dispose();
+			VentanaAsignacionSobreTurno sobreTurno=new VentanaAsignacionSobreTurno();
+			//Apertura de la ventana VentanaAsignacionSobreTurno
+			sobreTurno.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			sobreTurno.setVisible(true);
 		}
 		else if(botonSeleccionado==ventanaAdministrador.getRegistrarPaciente())
 		{

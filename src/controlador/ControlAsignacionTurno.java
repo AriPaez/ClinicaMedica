@@ -1,5 +1,6 @@
 package controlador;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -31,6 +32,7 @@ public class ControlAsignacionTurno extends WindowAdapter implements ActionListe
 	private String dniMedico;
 	private Time  horaInicio;
 	private Time  horaFin;
+	private boolean controlAsignacionTurno;
 	
 	public ControlAsignacionTurno(VentanaAsignacionTurno vAT)
 	{
@@ -177,7 +179,11 @@ public class ControlAsignacionTurno extends WindowAdapter implements ActionListe
 				this.horaFin=vetanaAsignacionTurno.getT10HoraFin();
 			}
 		}
-			
+		
+		if(controlAsignacionTurno)
+		{
+			controlarHorarioDeTurnoOcupado();
+		}
 		
 	}
 	
@@ -216,93 +222,10 @@ public class ControlAsignacionTurno extends WindowAdapter implements ActionListe
 		 
 		if(vetanaAsignacionTurno.getDateChooser()!=null)
 		{
-			
-			//Activacion po defecto de radioButton  en caso de cambiarse la fecha de turno.
-			
-			vetanaAsignacionTurno.setTurno1(true);
-			vetanaAsignacionTurno.setTurno2(true);
-			vetanaAsignacionTurno.setTurno3(true);
-			vetanaAsignacionTurno.setTurno4(true);
-			vetanaAsignacionTurno.setTurno5(true);
-			vetanaAsignacionTurno.setTurno6(true);
-			vetanaAsignacionTurno.setTurno7(true);
-			vetanaAsignacionTurno.setTurno8(true);
-			vetanaAsignacionTurno.setTurno9(true);
-			vetanaAsignacionTurno.setTurno10(true);
-			
-			
-			
-			try 
-			{ 
-				 
-				//Desactivacion de radioButton en caso de ya exista en la BBDD
-				CallableStatement horarioInicioTurnosReservados=
-				conexionBBDD.getConexionBBDD()
-				.prepareCall("{call horarioInicioTurnosReservados(?,?)}") ;
-				
-				horarioInicioTurnosReservados.setString(1,this.dniMedico);
-				horarioInicioTurnosReservados.setDate(2,new Date(vetanaAsignacionTurno.getDateChooser().getTime()) );
-				
-				 
-				ResultSet tabla=horarioInicioTurnosReservados.executeQuery();
-				 
-				while(tabla.next())
-				{
-					
-					
-					if(vetanaAsignacionTurno.getTurno1HoraInicio().equals(tabla.getTime(1)))
-					{ 
-						vetanaAsignacionTurno.setTurno1(false);
-					}
-					if(vetanaAsignacionTurno.getTurno2HoraInicio().equals(tabla.getTime(1)))
-					{
-						vetanaAsignacionTurno.setTurno2(false);
-					}
-					if(vetanaAsignacionTurno.getTurno3HoraInicio().equals(tabla.getTime(1)))
-					{
-						vetanaAsignacionTurno.setTurno3(false);
-					}
-					if(vetanaAsignacionTurno.getTurno4HoraInicio().equals(tabla.getTime(1)))
-					{
-						vetanaAsignacionTurno.setTurno4(false);
-					}
-					if(vetanaAsignacionTurno.getTurno5HoraInicio().equals(tabla.getTime(1)))
-					{
-						vetanaAsignacionTurno.setTurno5(false);
-					}
-					if(vetanaAsignacionTurno.getTurno6HoraInicio().equals(tabla.getTime(1)))
-					{
-						vetanaAsignacionTurno.setTurno6(false);
-					}
-					if(vetanaAsignacionTurno.getTurno7HoraInicio().equals(tabla.getTime(1)))
-					{
-						vetanaAsignacionTurno.setTurno7(false);
-					}
-					if(vetanaAsignacionTurno.getT8HoraInicio().equals(tabla.getTime(1)))
-					{
-						vetanaAsignacionTurno.setTurno8(false);
-					}
-					if(vetanaAsignacionTurno.getTurno9HoraInicio().equals(tabla.getTime(1)))
-					{
-						vetanaAsignacionTurno.setTurno9(false);
-					}
-					if(vetanaAsignacionTurno.getTurno10HoraInicio().equals(tabla.getTime(1)))
-					{
-						vetanaAsignacionTurno.setTurno10(false);
-					}
-					 
-				}
-				
-				  
-			}
-			catch (SQLException e) 
-			{  
-				e.printStackTrace();
-			}
+			controlarHorarioDeTurnoOcupado();
+		}
 		
-		 
-		}  
-		
+	 
 	}
 
 	@Override
@@ -359,7 +282,103 @@ public class ControlAsignacionTurno extends WindowAdapter implements ActionListe
 				
 		}
 	 			
-			 
+		if(controlAsignacionTurno)
+		{
+			controlarHorarioDeTurnoOcupado();
+		}
 	}
-		  
+	
+	public void controlarHorarioDeTurnoOcupado()
+	{
+		//Esta se activa para saber que ya se ha ejcutado la fecha de turno;
+		controlAsignacionTurno=true;
+		
+		//Activacion po defecto de radioButton  en caso de cambiarse la fecha de turno.
+		
+		vetanaAsignacionTurno.setTurno1(true);
+		vetanaAsignacionTurno.setTurno2(true);
+		vetanaAsignacionTurno.setTurno3(true);
+		vetanaAsignacionTurno.setTurno4(true);
+		vetanaAsignacionTurno.setTurno5(true);
+		vetanaAsignacionTurno.setTurno6(true);
+		vetanaAsignacionTurno.setTurno7(true);
+		vetanaAsignacionTurno.setTurno8(true);
+		vetanaAsignacionTurno.setTurno9(true);
+		vetanaAsignacionTurno.setTurno10(true);
+		
+		
+		
+		try 
+		{ 
+			 
+			//Desactivacion de radioButton en caso de ya exista en la BBDD
+			CallableStatement horarioInicioTurnosReservados=
+			conexionBBDD.getConexionBBDD()
+			.prepareCall("{call horarioInicioTurnosReservados(?,?)}") ;
+			
+			horarioInicioTurnosReservados.setString(1,this.dniMedico);
+			horarioInicioTurnosReservados.setDate(2,new Date(vetanaAsignacionTurno.getDateChooser().getTime()) );
+			
+			 
+			ResultSet tabla=horarioInicioTurnosReservados.executeQuery();
+			 
+			while(tabla.next())
+			{
+				
+				
+				if(vetanaAsignacionTurno.getTurno1HoraInicio().equals(tabla.getTime(1)))
+				{ 
+					vetanaAsignacionTurno.setTurno1(false);
+				}
+				if(vetanaAsignacionTurno.getTurno2HoraInicio().equals(tabla.getTime(1)))
+				{
+					vetanaAsignacionTurno.setTurno2(false);
+				}
+				if(vetanaAsignacionTurno.getTurno3HoraInicio().equals(tabla.getTime(1)))
+				{
+					vetanaAsignacionTurno.setTurno3(false);
+				}
+				if(vetanaAsignacionTurno.getTurno4HoraInicio().equals(tabla.getTime(1)))
+				{
+					vetanaAsignacionTurno.setTurno4(false);
+				}
+				if(vetanaAsignacionTurno.getTurno5HoraInicio().equals(tabla.getTime(1)))
+				{
+					vetanaAsignacionTurno.setTurno5(false);
+				}
+				if(vetanaAsignacionTurno.getTurno6HoraInicio().equals(tabla.getTime(1)))
+				{
+					vetanaAsignacionTurno.setTurno6(false);
+				}
+				if(vetanaAsignacionTurno.getTurno7HoraInicio().equals(tabla.getTime(1)))
+				{
+					vetanaAsignacionTurno.setTurno7(false);
+				}
+				if(vetanaAsignacionTurno.getT8HoraInicio().equals(tabla.getTime(1)))
+				{
+					vetanaAsignacionTurno.setTurno8(false);
+				}
+				if(vetanaAsignacionTurno.getTurno9HoraInicio().equals(tabla.getTime(1)))
+				{
+					vetanaAsignacionTurno.setTurno9(false);
+				}
+				if(vetanaAsignacionTurno.getTurno10HoraInicio().equals(tabla.getTime(1)))
+				{
+					vetanaAsignacionTurno.setTurno10(false);
+				}
+				 
+			}
+			
+			  
+		}
+		catch (SQLException e) 
+		{  
+			e.printStackTrace();
+		}
+	
+	 
+	}  
+
 }
+		  
+ 

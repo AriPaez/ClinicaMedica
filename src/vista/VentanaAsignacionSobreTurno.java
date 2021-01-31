@@ -1,12 +1,12 @@
 package vista;
+
 import java.awt.Font;
 import java.sql.Time;
-import java.time.LocalTime ;
+import java.time.LocalTime;
 import java.util.Date;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -15,17 +15,14 @@ import javax.swing.JTextField;
 
 import com.toedter.calendar.JDateChooser;
 
-import controlador.ControlAsignacionTurno;
+import controlador.ControlSobreTurno;
 
-public class VentanaAsignacionTurno extends JFrame 
-{
-	
-	private ControlAsignacionTurno  cAT;
+public class VentanaAsignacionSobreTurno extends JFrame {
 	private JTextField dniPaciente;
-	private JButton asignarTurno ;
+	private JTextField fechaSobreTurno;
+	private ControlSobreTurno cST;
+	private JButton asignarTurno;
 	private JButton cancelarTurno;
-	private JComboBox especialidad;
-	private JComboBox profesional;
 	private JRadioButton turno1;
 	private JRadioButton turno2;
 	private JRadioButton turno3;
@@ -36,194 +33,159 @@ public class VentanaAsignacionTurno extends JFrame
 	private JRadioButton turno8;
 	private JRadioButton turno9;
 	private JRadioButton turno10;
-	private LocalTime  turno1HoraInicio;
-	private LocalTime  turno1HoraFin;
-	private LocalTime  turno2HoraInicio;
-	private LocalTime  turno2HoraFin;
-	private LocalTime  turno3HoraInicio;
-	private LocalTime  turno3HoraFin;
-	private LocalTime  turno4HoraInicio;
-	private LocalTime  turno4HoraFin;
-	private LocalTime  turno5HoraInicio;
-	private LocalTime  turno5HoraFin;
-	private LocalTime  turno6HoraInicio;
-	private LocalTime  turno6HoraFin;
-	private LocalTime  turno7HoraInicio;
-	private LocalTime  turno7HoraFin;
-	private LocalTime  turno8HoraInicio;
-	private LocalTime  turno8HoraFin;
-	private LocalTime  turno9HoraInicio;
-	private LocalTime  turno9HoraFin;
-	private LocalTime  turno10HoraInicio;
-	private LocalTime  turno10HoraFin;
+	private LocalTime turno1HoraInicio;
+	private LocalTime turno1HoraFin;
+	private LocalTime turno2HoraInicio;
+	private LocalTime turno2HoraFin;
+	private LocalTime turno3HoraInicio;
+	private LocalTime turno3HoraFin;
+	private LocalTime turno4HoraInicio;
+	private LocalTime turno4HoraFin;
+	private LocalTime turno5HoraInicio;
+	private LocalTime turno5HoraFin;
+	private LocalTime turno6HoraInicio;
+	private LocalTime turno6HoraFin;
+	private LocalTime turno7HoraInicio;
+	private LocalTime turno7HoraFin;
+	private LocalTime turno8HoraInicio;
+	private LocalTime turno8HoraFin;
+	private LocalTime turno9HoraInicio;
+	private LocalTime turno9HoraFin;
+	private LocalTime turno10HoraInicio;
+	private LocalTime turno10HoraFin;
 	private JDateChooser dateChooser;
-	
-	public VentanaAsignacionTurno()
-	{
-		
+
+	public VentanaAsignacionSobreTurno() {
 		setTitle("ASIGNACIÓN DE TURNOS");
 		getContentPane().setLayout(null);
-		setSize(434, 550);
+		setSize(434, 464);
 		setLocationRelativeTo(null);
 		JPanel laminaPrincipal = new JPanel();
-		laminaPrincipal.setBounds(0, 0, 418, 509);
+		laminaPrincipal.setBounds(0, 0, 418, 425);
 		getContentPane().add(laminaPrincipal);
 		laminaPrincipal.setLayout(null);
-		
-		JLabel asignacionTurno = new JLabel("ASIGNACION DE TURNO");
+
+		JLabel asignacionTurno = new JLabel("SOBRE TURNO");
 		asignacionTurno.setFont(new Font("Arial", Font.BOLD, 30));
-		asignacionTurno.setBounds(36, 11, 355, 36);
+		asignacionTurno.setBounds(115, 11, 232, 36);
 		laminaPrincipal.add(asignacionTurno);
-		
+
 		JLabel msjeDNIPaciente = new JLabel("DNI Paciente");
 		msjeDNIPaciente.setFont(new Font("Arial", Font.PLAIN, 12));
 		msjeDNIPaciente.setBounds(36, 62, 83, 20);
 		laminaPrincipal.add(msjeDNIPaciente);
-		
-		JLabel msjeEspecialidad = new JLabel("Especialidad");
-		msjeEspecialidad.setFont(new Font("Arial", Font.PLAIN, 12));
-		msjeEspecialidad.setBounds(36, 93, 83, 20);
-		laminaPrincipal.add(msjeEspecialidad);
-		
+
 		dniPaciente = new JTextField();
-		dniPaciente.setBounds(178, 62, 232, 20);
+		dniPaciente.setBounds(178, 62, 212, 20);
 		laminaPrincipal.add(dniPaciente);
 		dniPaciente.setColumns(10);
-		
-		especialidad = new JComboBox();
-		especialidad.setEditable(false);
-		especialidad.setBounds(178, 92, 232, 22);
-		laminaPrincipal.add(especialidad);
-		
+
 		JLabel msjeFecha = new JLabel("Fecha");
 		msjeFecha.setFont(new Font("Arial", Font.PLAIN, 12));
-		msjeFecha.setBounds(36, 185, 46, 14);
+		msjeFecha.setBounds(36, 110, 46, 14);
 		laminaPrincipal.add(msjeFecha);
-		
+
 		dateChooser = new JDateChooser();
-		dateChooser.setBounds(178, 179, 232, 20);
+		dateChooser.setBounds(178, 110, 232, 20);
 		laminaPrincipal.add(dateChooser);
-		
-		JLabel msjeProfesional = new JLabel("Profesional");
-		msjeProfesional.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		msjeProfesional.setBounds(36, 134, 93, 20);
-		laminaPrincipal.add(msjeProfesional);
-		
-		profesional = new JComboBox();
-		profesional.setEditable(false);
-		profesional.setBounds(178, 134, 232, 22);
-		laminaPrincipal.add(profesional);
-		
+
 		JLabel msjeHorarios = new JLabel("Horario");
 		msjeHorarios.setFont(new Font("Arial", Font.PLAIN, 12));
-		msjeHorarios.setBounds(36, 229, 46, 14);
+		msjeHorarios.setBounds(36, 160, 46, 14);
 		laminaPrincipal.add(msjeHorarios);
-		
-		 
-		
+
 		asignarTurno = new JButton("Asignar");
-		asignarTurno.setBounds(53, 475, 121, 23);
+		asignarTurno.setBounds(48, 383, 121, 23);
 		laminaPrincipal.add(asignarTurno);
-		
+
 		cancelarTurno = new JButton("Cancelar");
-		cancelarTurno.setBounds(302, 475, 108, 23);
+		cancelarTurno.setBounds(282, 383, 108, 23);
 		laminaPrincipal.add(cancelarTurno);
-		
-		ButtonGroup turnos=new ButtonGroup();
-		
+
+		ButtonGroup turnos = new ButtonGroup();
+
 		turno1 = new JRadioButton("8:00 hs a 8:15 hs");
 		turnos.add(turno1);
-		turno1HoraInicio = LocalTime .of( 8, 0);
-		turno1HoraFin = LocalTime .of( 8, 15);
-		turno1.setBounds(112, 229, 140, 23);
+		turno1HoraInicio = LocalTime.of(8, 0);
+		turno1HoraFin = LocalTime.of(8, 15);
+		turno1.setBounds(112, 160, 140, 23);
 		laminaPrincipal.add(turno1);
-		
+
 		turno2 = new JRadioButton("8:20 hs a 8:35 hs");
 		turnos.add(turno2);
-		turno2HoraInicio = LocalTime .of( 8, 20);
-		turno2HoraFin = LocalTime .of(8, 35);
-		turno2.setBounds(110, 263, 140, 23);
+		turno2HoraInicio = LocalTime.of(8, 20);
+		turno2HoraFin = LocalTime.of(8, 35);
+		turno2.setBounds(110, 194, 140, 23);
 		laminaPrincipal.add(turno2);
 
 		turno3 = new JRadioButton("8:40 hs a 8:45 hs");
 		turnos.add(turno3);
-		turno3HoraInicio = LocalTime .of( 8, 40);
-		turno3HoraFin = LocalTime .of( 8, 45);
-		turno3.setBounds(110, 302, 140, 23);
+		turno3HoraInicio = LocalTime.of(8, 40);
+		turno3HoraFin = LocalTime.of(8, 45);
+		turno3.setBounds(110, 233, 140, 23);
 		laminaPrincipal.add(turno3);
-		
+
 		turno4 = new JRadioButton("9:00 hs a 9:15 hs");
 		turnos.add(turno4);
-		turno4HoraInicio = LocalTime .of( 9, 0);
-		turno4HoraFin = LocalTime .of(9, 15);
-		turno4.setBounds(110, 344, 140, 23);
+		turno4HoraInicio = LocalTime.of(9, 0);
+		turno4HoraFin = LocalTime.of(9, 15);
+		turno4.setBounds(110, 275, 140, 23);
 		laminaPrincipal.add(turno4);
-		
+
 		turno5 = new JRadioButton("9:20 hs a 9:35 hs");
 		turnos.add(turno5);
-		turno5HoraInicio = LocalTime .of( 9, 20);
-		turno5HoraFin = LocalTime .of(9, 35);
-		turno5.setBounds(110, 391, 140, 23);
+		turno5HoraInicio = LocalTime.of(9, 20);
+		turno5HoraFin = LocalTime.of(9, 35);
+		turno5.setBounds(110, 322, 140, 23);
 		laminaPrincipal.add(turno5);
-		
+
 		turno6 = new JRadioButton("9:40 hs a 9:55 hs");
 		turnos.add(turno6);
-		turno6HoraInicio = LocalTime .of( 9, 40);
-		turno6HoraFin = LocalTime .of( 9, 55);
-		turno6.setBounds(270, 229, 140, 23);
+		turno6HoraInicio = LocalTime.of(9, 40);
+		turno6HoraFin = LocalTime.of(9, 55);
+		turno6.setBounds(270, 160, 140, 23);
 		laminaPrincipal.add(turno6);
-		
+
 		turno7 = new JRadioButton("10:00 hs a 10:15 hs");
 		turnos.add(turno7);
-		turno7HoraInicio = LocalTime .of( 10, 0);
-		turno7HoraFin = LocalTime .of(10, 15);
-		turno7.setBounds(269, 263, 140, 23);
+		turno7HoraInicio = LocalTime.of(10, 0);
+		turno7HoraFin = LocalTime.of(10, 15);
+		turno7.setBounds(269, 194, 140, 23);
 		laminaPrincipal.add(turno7);
-		
+
 		turno8 = new JRadioButton("10:20 hs a 10:35 hs");
 		turnos.add(turno8);
-		turno8HoraInicio = LocalTime .of( 10, 20);
-		turno8HoraFin = LocalTime .of(10, 35);
-		turno8.setBounds(270, 302, 140, 23);
+		turno8HoraInicio = LocalTime.of(10, 20);
+		turno8HoraFin = LocalTime.of(10, 35);
+		turno8.setBounds(270, 233, 140, 23);
 		laminaPrincipal.add(turno8);
-		
+
 		turno9 = new JRadioButton("10:40 hs a 10:55 hs");
 		turnos.add(turno9);
-		turno9HoraInicio = LocalTime .of( 10, 40);
-		turno9HoraFin = LocalTime .of(10, 55);
-		turno9.setBounds(269, 344, 140, 23);
+		turno9HoraInicio = LocalTime.of(10, 40);
+		turno9HoraFin = LocalTime.of(10, 55);
+		turno9.setBounds(269, 275, 140, 23);
 		laminaPrincipal.add(turno9);
 
 		turno10 = new JRadioButton("11:00 hs a 11:15 hs");
 		turnos.add(turno10);
-		turno10HoraInicio = LocalTime .of( 11, 0);
-		turno10HoraFin = LocalTime .of( 11, 15);
-		//t10.setEnabled(false);
-		turno10.setBounds(269, 391, 140, 23);
+		turno10HoraInicio = LocalTime.of(11, 0);
+		turno10HoraFin = LocalTime.of(11, 15);
+		// t10.setEnabled(false);
+		turno10.setBounds(269, 322, 140, 23);
 		laminaPrincipal.add(turno10);
-		 
-		cAT=new ControlAsignacionTurno(this);
-		
-		//Al presionar los botons se produve
-		//evento para asignar o  cancelar el turno.
-		asignarTurno.addActionListener(cAT);
-		cancelarTurno.addActionListener(cAT);
-		
-		
-		//Al abrirse la VentanaAsignacionTurno se ejecuta windowOpened
-		addWindowListener(cAT);
-		 
-		//Carga los doctores que pertenen a una especialidad
-		//en concreta.
-		especialidad.addItemListener(cAT);
-		
-		//Carga los profesionales dependiendo eleccion de especialida.
-		profesional.addItemListener(cAT);
-		
-		//Detecta evento de cambio de fecha en JCalendar.
-		dateChooser.addPropertyChangeListener(cAT);
-		
-		//Detecta evento de eleccion de horario del radioButton
+
+		cST = new ControlSobreTurno(this);
+
+		// Al presionar los botons se produve
+		// evento para asignar o cancelar el turno.
+		asignarTurno.addActionListener(cST);
+		cancelarTurno.addActionListener(cST);
+
+		// Detecta evento de cambio de fecha en JCalendar.
+		dateChooser.addPropertyChangeListener(cST);
+
+		// Detecta evento de eleccion de horario del radioButton
 		this.eventoRadioButton(turno1);
 		this.eventoRadioButton(turno2);
 		this.eventoRadioButton(turno3);
@@ -234,30 +196,15 @@ public class VentanaAsignacionTurno extends JFrame
 		this.eventoRadioButton(turno8);
 		this.eventoRadioButton(turno9);
 		this.eventoRadioButton(turno10);
+
 	}
-	
+
 	public JButton getAsignarTurno() {
 		return asignarTurno;
 	}
 
 	public JButton getCancelarTurno() {
 		return cancelarTurno;
-	}
-	
-	public void setEspecialidad(String especialidad) {
-		this.especialidad.addItem(especialidad);
-	}
-	
-	public void setProfesional(String unProfesional) {
-		this.profesional.addItem(unProfesional);
-	}
-
-	public JComboBox getEspecialidad() {
-		return   especialidad;
-	}
-
-	public JComboBox getProfesional() {
-		return profesional;
 	}
 
 	public void setTurno1(boolean t1) {
@@ -300,20 +247,16 @@ public class VentanaAsignacionTurno extends JFrame
 		this.turno10.setEnabled(t10);
 	}
 
-	 
-	
 	public Date getDateChooser() {
-		
-		 
-		return   dateChooser.getDate() ;
-		  
+
+		return dateChooser.getDate();
+
 	}
-	
-	public JDateChooser getDateChooserObject()
-	{
-		return   dateChooser;
+
+	public JDateChooser getDateChooserObject() {
+		return dateChooser;
 	}
-	
+
 	public JRadioButton getT1() {
 		return turno1;
 	}
@@ -327,7 +270,7 @@ public class VentanaAsignacionTurno extends JFrame
 	}
 
 	public Time getTurno1HoraFin() {
-		return Time.valueOf( turno1HoraFin);
+		return Time.valueOf(turno1HoraFin);
 	}
 
 	public Time getTurno2HoraInicio() {
@@ -401,7 +344,7 @@ public class VentanaAsignacionTurno extends JFrame
 	public Time getT10HoraFin() {
 		return Time.valueOf(turno10HoraFin);
 	}
-	
+
 	public String getDniPaciente() {
 		return dniPaciente.getText();
 	}
@@ -441,12 +384,9 @@ public class VentanaAsignacionTurno extends JFrame
 	public JRadioButton getT9() {
 		return turno9;
 	}
-	
-	
-	public void eventoRadioButton(JRadioButton radioButton)
-	{
-		radioButton.addActionListener(cAT);
+
+	public void eventoRadioButton(JRadioButton radioButton) {
+		radioButton.addActionListener(this.cST);
 	}
-	
-	
+
 }
