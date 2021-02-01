@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import vista.VentanaAdministrador;
 import vista.VentanaAsignacionSobreTurno;
 import vista.VentanaAsignacionTurno;
+import vista.VentanaConsultaTurno;
 import vista.VentanaRegistrarPaciente;
 
 public class ControlVentanaAdministrador implements ActionListener 
@@ -36,15 +37,17 @@ public class ControlVentanaAdministrador implements ActionListener
 		}
 		else if(botonSeleccionado==ventanaAdministrador.getAsignarTurno())
 		{
-			VentanaAsignacionTurno vAT=new VentanaAsignacionTurno();
 			ventanaAdministrador.dispose();
+			VentanaAsignacionTurno vAT=new VentanaAsignacionTurno();
 			ventanaAdministrador.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			vAT.setVisible(true);
 		}
 		else if(botonSeleccionado==ventanaAdministrador.getConsultarTurno())
 		{
-			
-			System.out.println("turno");
+			ventanaAdministrador.dispose();
+			VentanaConsultaTurno vCT=new VentanaConsultaTurno();
+			vCT.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			vCT.setVisible(true);
 			
 		}
 		else if(botonSeleccionado==ventanaAdministrador.getSobreTurno())

@@ -47,20 +47,22 @@ public class ControlSobreTurno implements ActionListener, PropertyChangeListener
 				sobreTurno.setDate(2, new Date(ventanaAsignacionSobreTurno.getDateChooser().getTime()));
 				sobreTurno.setTime(3, this.horaInicio);
 				sobreTurno.setTime(4, this.horaFin);
-				 
+				
 				sobreTurno.execute();
-
+ 
 				JOptionPane.showMessageDialog(null, 
 				"SobreTurno asignado correctamente para el paciente con dni: "+ventanaAsignacionSobreTurno.getDniPaciente()
 				+"\n para el día "+new Date(ventanaAsignacionSobreTurno.getDateChooser().getTime())+ " y horario: "+this.horaInicio+" a "+this.horaFin,
-				"BBDD", 1, null);	ventanaAsignacionSobreTurno.dispose();
-
+				"BBDD", 1, null);
+				
+				ventanaAsignacionSobreTurno.dispose();
 				VentanaAdministrador vA = new VentanaAdministrador();
 				vA.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				vA.setVisible(true);
 
 			} catch (Exception exeptionBBDD) {
-				JOptionPane.showMessageDialog(null, "Error de BBDD. Vuelva a intentar", "BBDD", 2, null);
+				
+				JOptionPane.showMessageDialog(null,exeptionBBDD.getMessage() , "BBDD", 2, null);
 				ventanaAsignacionSobreTurno.setDniPaciente("");
 				
 			}
@@ -72,6 +74,7 @@ public class ControlSobreTurno implements ActionListener, PropertyChangeListener
 			vA.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			vA.setVisible(true);
 		} else {
+			
 			// Aca al presionar se un radioButton se almacena en las variables horaInicio
 			// horaFin el horario selecionado.
 			// Se realiza aca ya que JRadioButton tambien tiene un evento
