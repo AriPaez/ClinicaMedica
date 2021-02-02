@@ -43,11 +43,11 @@ public class ControlSobreTurno implements ActionListener, PropertyChangeListener
 
 				CallableStatement sobreTurno = conexionBBDD.getConexionBBDD().prepareCall("{call sobreTurno(?,?,?,?)}");
 
-				sobreTurno.setString(1, ventanaAsignacionSobreTurno.getDniPaciente());
-				sobreTurno.setDate(2, new Date(ventanaAsignacionSobreTurno.getDateChooser().getTime()));
-				sobreTurno.setTime(3, this.horaInicio);
-				sobreTurno.setTime(4, this.horaFin);
-				
+				sobreTurno.setString(1,ventanaAsignacionSobreTurno.getDniPaciente());
+				sobreTurno.setDate(2,new Date(ventanaAsignacionSobreTurno.getDateChooser().getTime()));
+				sobreTurno.setTime(3,this.horaInicio);
+				sobreTurno.setTime(4,this.horaFin);
+								
 				sobreTurno.execute();
  
 				JOptionPane.showMessageDialog(null, 

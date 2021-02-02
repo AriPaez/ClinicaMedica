@@ -137,48 +137,8 @@ BEGIN
 		THEN 1 ELSE 0 END );
 END;
 GO
-
-
---sobre turno de paciente
-GO
-ALTER PROCEDURE sobreTurno(@dniDelPaciente VARCHAR(8) ,@nuevaFecha DATE,
-@nuevaHoraInicio TIME,@nuevaHoraFin TIME)
-AS 
- IF NOT EXISTS (SELECT dniPaciente FROM Turno WHERE dniPaciente=@dniDelPaciente)
- BEGIN
-	 PRINT('¡dniPaciente no encontrado en la BASE DE DATOS!')
-	 RETURN
- END
- BEGIN 
-	UPDATE Turno
-	   SET [fecha]=@nuevaFecha, 
-		  [horaInicio]=@nuevaHoraInicio,
-		  [horaFin]=@nuevaHoraFin
-	 WHERE dniPaciente=@dniDelPaciente 
- END
- GO
- ----sobre turno de paciente con try catch
-ALTER PROCEDURE sobreTurno(@dniDelPaciente VARCHAR(8) ,@nuevaFecha DATE,
-@nuevaHoraInicio TIME,@nuevaHoraFin TIME)
-AS 
-BEGIN TRY  
-IF EXISTS (SELECT dniPaciente FROM Turno WHERE dniPaciente=@dniDelPaciente)
-  BEGIN
-  UPDATE Turno
-	   SET [fecha]=@nuevaFecha, 
-		  [horaInicio]=@nuevaHoraInicio,
-		  [horaFin]=@nuevaHoraFin
-	 WHERE dniPaciente=@dniDelPaciente 
-	END
-END TRY  
-BEGIN CATCH  
-	 
-  PRINT('¡dniPaciente no encontrado en la BASE DE DATOS!')    
-END CATCH
-
-exec sobreTurno '654','24-9-1996','08:00:00.0000000','08:00:00.0000000'
-
----sobre turno de paciente con transacion
+ 
+---sobre turno de paciente con TRANSACTION
 
 ALTER PROCEDURE sobreTurno(@dniDelPaciente VARCHAR(8) ,@nuevaFecha DATE,
 @nuevaHoraInicio TIME,@nuevaHoraFin TIME)
@@ -197,9 +157,45 @@ IF NOT EXISTS (SELECT dniPaciente FROM Turno WHERE dniPaciente = @dniDelPaciente
 COMMIT TRANSACTION
 GO
 
-exec sobreTurno '654','24-9-1996','08:00:00.0000000','08:00:00.0000000'
+EXEC sobreTurno '654','24-9-1996','08:00:00.0000000','08:00:00.0000000'
 
- --se obtiene el turno de un paciente mediante su dni correspondiente.
+---sobre turno de paciente sin transaccion
+
+ALTER PROCEDURE sobreTurno(@dniDelPaciente VARCHAR(8) ,@nuevaFecha DATE,
+@nuevaHoraInicio TIME,@nuevaHoraFin TIME)
+AS 
+IF NOT EXISTS (SELECT dniPaciente FROM Turno WHERE dniPaciente = @dniDelPaciente)
+ BEGIN
+	RAISERROR('¡DNI no encontrado en la BBDD!',14,1) --dni no encontrado.
+	RETURN
+ END
+ UPDATE Turno
+	   SET [fecha]=@nuevaFecha, 
+		  [horaInicio]=@nuevaHoraInicio,
+		  [horaFin]=@nuevaHoraFin
+	 WHERE dniPaciente=@dniDelPaciente 
+GO
+
+EXEC sobreTurno '654','24-9-1996','08:00:00.0000000','08:00:00.0000000'
+
+---sobre turno de paciente con THOROW
+
+ALTER PROCEDURE sobreTurno(@dniDelPaciente VARCHAR(8) ,@nuevaFecha DATE,
+@nuevaHoraInicio TIME,@nuevaHoraFin TIME)
+AS 
+IF EXISTS (SELECT dniPaciente FROM Turno WHERE dniPaciente = @dniDelPaciente)
+ UPDATE Turno
+	   SET [fecha]=@nuevaFecha, 
+		  [horaInicio]=@nuevaHoraInicio,
+		  [horaFin]=@nuevaHoraFin
+	 WHERE dniPaciente=@dniDelPaciente 
+ELSE
+	THROW 50000,'¡DNI no encontrado en la BBDD!',0;
+GO
+
+EXEC sobreTurno '654','24-9-1996','08:00:00.0000000','08:00:00.0000000'
+
+--se obtiene el turno de un paciente mediante su dni correspondiente.
 
  CREATE PROCEDURE obtenerTurnoDePaciente(@dniDelPaciente VARCHAR(8))
  AS
@@ -212,7 +208,5 @@ exec sobreTurno '654','24-9-1996','08:00:00.0000000','08:00:00.0000000'
  END
  --ejecucion del procedimiento.
  exec obtenerTurnoDePaciente '34326587'
-
- select*
- from Administrador
+ 
 
