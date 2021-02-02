@@ -210,3 +210,15 @@ EXEC sobreTurno '654','24-9-1996','08:00:00.0000000','08:00:00.0000000'
  exec obtenerTurnoDePaciente '34326587'
  
 
+ --busqueda de existencia de paciente.
+ ALTER PROCEDURE buscarTurnoDePaciente(@dniPaciente VARCHAR(8))
+ AS
+ IF EXISTS (SELECT dniPaciente FROM Turno WHERE dniPaciente=@dniPaciente)
+	 PRINT 'El usuario ingresado existe en la BBDD'
+ ELSE
+ THROW 50000,'El dni ingresado no existe en la BBDD. Vuelva a ingresar',1;
+
+
+ EXEC buscarTurnoDePaciente '34326587'
+
+  
