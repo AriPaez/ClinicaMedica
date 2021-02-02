@@ -83,5 +83,31 @@ CREATE TABLE Turno
 	FOREIGN KEY(dniMedico) REFERENCES Medico(dniMedico),
 )
 
-SET IDENTITY_INSERT Turno OFF
+SET IDENTITY_INSERT Turno2 ON
+
+--Se requiere agregar una columa asistencia entre las columas horaFin y dniPaciente
+--Para ello, primero se crea una tabla auxiliar de nombre Turno2
+CREATE TABLE auxTurno
+(
+	idTurno INT  PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	fecha DATE,
+	horaInicio TIME,
+	horaFin TIME,
+	asistencia BIT,
+	dniPaciente VARCHAR(8) NOT NULL,
+	dniMedico VARCHAR(8) NOT NULL,
+	FOREIGN KEY(dniPaciente) REFERENCES Paciente(dniPaciente), 
+	FOREIGN KEY(dniMedico) REFERENCES Medico(dniMedico),
+)
+
+--Respectivamente, se copia el contenido de la tabla turno a la tabla auxiliar turno2
+INSERT INTO auxTurno(idTurno,fecha,horaInicio,horaFin,dniPaciente,dniMedico) select *  from  turno
+
+--Se borra la tabla original turno
+drop table Turno
+
+-- Se renombra la tabla auxiliar turno2.
+EXEC sp_rename 'auxTurno','turno' 
+
+ 
  
