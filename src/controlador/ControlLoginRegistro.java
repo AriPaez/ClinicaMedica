@@ -18,6 +18,7 @@ public class ControlLoginRegistro implements ActionListener {
 	private Login login;
 	private TipoUsuario tipoUsuario;
 	private String dniUsuario;
+	
 	public ControlLoginRegistro(Login l) {
 		login = l;
 		conexionBBDD = new ConexionBBDD();
@@ -40,7 +41,7 @@ public class ControlLoginRegistro implements ActionListener {
 					autenticacion = conexionBBDD.getConexionBBDD().prepareStatement(
 							"SELECT dniMedico,contrasenia FROM Medico WHERE dniMedico=? and contrasenia=?");
 
-					autenticacion.setString(1, login.getIngresoDNI().getText());
+					autenticacion.setString(1, login.getDniUsuario().getText());
 					char[] arrayC = login.getIngresoPass().getPassword();
 					String pass = new String(arrayC);
 					autenticacion.setString(2, pass);
@@ -73,7 +74,7 @@ public class ControlLoginRegistro implements ActionListener {
 						JOptionPane.showMessageDialog(null, "No encontrado. Vuelva a ingresar", "BBDD", 2, null);
 						
 						//Reseteo de datos ingresados login
-						 login.setIngresoDNI("");
+						 login.setDniUsuario("");
 						 login.setIngresoPass("");
 					}
 
@@ -86,7 +87,7 @@ public class ControlLoginRegistro implements ActionListener {
 					autenticacion = conexionBBDD.getConexionBBDD().prepareStatement(
 							"SELECT dniAdministrador,contrasenia FROM Administrador WHERE dniAdministrador=? and contrasenia=?");
 
-					autenticacion.setString(1, login.getIngresoDNI().getText());
+					autenticacion.setString(1, login.getDniUsuario().getText());
 					char[] arrayC = login.getIngresoPass().getPassword();
 					dniUsuario = new String(arrayC);
 					
@@ -118,7 +119,7 @@ public class ControlLoginRegistro implements ActionListener {
 						JOptionPane.showMessageDialog(null, "No encontrado. Vuelva a ingresar", "BBDD", 2, null);
 						
 						//Reseteo de datos ingresados login
-						 login.setIngresoDNI("");
+						 login.setDniUsuario("");
 						 login.setIngresoPass("");
 					}
 

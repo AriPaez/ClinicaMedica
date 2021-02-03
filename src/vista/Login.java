@@ -18,7 +18,7 @@ import controlador.ControlLoginRegistro;
 
 public class Login extends JFrame {
 
-	private static JTextField  ingresoDNI;
+	private static JTextField  dniUsuario;
 	private JPasswordField ingresoPass;
 	private JButton iniciarSesion;
 	private JButton registrar;
@@ -48,8 +48,8 @@ public class Login extends JFrame {
 
 		JLabel msjeDNI = new JLabel("DNI");
 		laminaCentralIngresoDatos.add(msjeDNI);
-		ingresoDNI = new JTextField();
-		laminaCentralIngresoDatos.add(ingresoDNI);
+		dniUsuario = new JTextField();
+		laminaCentralIngresoDatos.add(dniUsuario);
 
 		JLabel msjePass = new JLabel("Password");
 		laminaCentralIngresoDatos.add(msjePass);
@@ -89,8 +89,8 @@ public class Login extends JFrame {
 		return registrar;
 	}
 
-	public  static JTextField getIngresoDNI() {
-		return ingresoDNI;
+	public  static JTextField getDniUsuario() {
+		return dniUsuario;
 	}
 	 
 	public JPasswordField getIngresoPass() {
@@ -101,8 +101,8 @@ public class Login extends JFrame {
 		return cargo;
 	}
 	
-	public void setIngresoDNI(String ingresoDNI) {
-		this.ingresoDNI.setText(ingresoDNI);
+	public void setDniUsuario(String ingresoDNI) {
+		this.dniUsuario.setText(ingresoDNI);
 	}
 
 	public void setIngresoPass(String ingresoPass) {

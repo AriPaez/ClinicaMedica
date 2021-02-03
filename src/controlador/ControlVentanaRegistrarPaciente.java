@@ -55,7 +55,7 @@ public class ControlVentanaRegistrarPaciente implements ActionListener {
 				registrarPaciente.setString(5,registroPaciente.getIngresoApellido());
 				registrarPaciente.setString(6,registroPaciente.getIngresoCelular());
 				registrarPaciente.setString(7,registroPaciente.getIngresoEmail());
-				registrarPaciente.setString(8,Login.getIngresoDNI().getText());
+				registrarPaciente.setString(8,Login.getDniUsuario().getText());
 				
 				registrarPaciente.execute();
 				

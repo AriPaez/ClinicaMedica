@@ -1,4 +1,5 @@
 package vista;
+
 import java.awt.FlowLayout;
 import java.awt.Font;
 import javax.swing.JButton;
@@ -12,138 +13,157 @@ import javax.swing.JTextField;
 
 import controlador.ControlPlanillaPaciente;
 
-public class PlanillaPaciente extends JFrame
-{ 
-	private JTextField ingresoDNIPaciente;
-	private JTextField ingresoTalla;
-	private JTextField ingresoPeso;
-	private JTextField ingresoMedicamento;
+public class PlanillaPaciente extends JFrame {
+
+	private JTextField dniPaciente;
+	private JTextField talla;
+	private JTextField peso;
+	private JTextField medicamento;
 	private JButton cargar;
 	private JButton cancelar;
+	private JComboBox asistencia;
+	private JTextArea motivoConsulta;
+	private JTextArea instruccionesAlPaciente;
+	private JTextArea instruccionesAlFtico ;
+	private JTextArea diagnostico;
 	
 	public PlanillaPaciente() 
 	{
 		//Caracteristica ventana.
-		setSize(465, 630);
+		setSize(465, 711);
 		setLocationRelativeTo(null);
-		setLayout(null);
+		setResizable(false);
+		getContentPane().setLayout(null);
 
 		JPanel laminaSuperior = new JPanel();
-		laminaSuperior.setBounds(0, 0, 384, 35);
+		laminaSuperior.setBounds(43, 0, 384, 35);
 
 		laminaSuperior.setLayout(new FlowLayout(FlowLayout.CENTER));
 		JLabel titituloPlanilla = new JLabel("PLANILLA PACIENTE");
 		titituloPlanilla.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		laminaSuperior.add(titituloPlanilla);
-		add(laminaSuperior);
+		getContentPane().add(laminaSuperior);
 
 		
 		JLabel msjeDNIPaciente = new JLabel("DNI Paciente");
 		msjeDNIPaciente.setBounds(22, 46, 95, 20);
 		msjeDNIPaciente.setFont(new Font("Arial", Font.PLAIN, 12));
-		add(msjeDNIPaciente);
+		getContentPane().add(msjeDNIPaciente);
 		
-		ingresoDNIPaciente = new JTextField();
-		ingresoDNIPaciente.setBounds(159, 46, 95, 20);
-		add(ingresoDNIPaciente);
-		ingresoDNIPaciente.setColumns(10);
+		dniPaciente = new JTextField();
+		dniPaciente.setBounds(159, 46, 95, 20);
+		getContentPane().add(dniPaciente);
+		dniPaciente.setColumns(10);
 
 		JLabel msjeAsistencia = new JLabel("Asistencia");
 		msjeAsistencia.setBounds(22, 78, 85, 20);
 		msjeAsistencia.setFont(new Font("Arial", Font.PLAIN, 12));
-		add(msjeAsistencia);
+		getContentPane().add(msjeAsistencia);
 
-		JComboBox asistencia = new JComboBox();
+		asistencia = new JComboBox();
+		asistencia.setEditable(false);
 		asistencia.setBounds(159, 77, 96, 22);
-		asistencia.addItem("Si");
+		asistencia.addItem("Sí");
 		asistencia.addItem("No");
-		add(asistencia);
+		getContentPane().add(asistencia);
 
 		JLabel msjeCargaEstudio = new JLabel("CARGA DE ESTUDIO");
-		msjeCargaEstudio.setBounds(104, 123, 198, 35);
+		msjeCargaEstudio.setBounds(140, 111, 198, 35);
 		msjeCargaEstudio.setFont(new Font("Arial", Font.BOLD, 15));
-		add(msjeCargaEstudio);
+		getContentPane().add(msjeCargaEstudio);
 		
 		JLabel msjeTalla = new JLabel("Talla (cm)");
 		msjeTalla.setBounds(22, 156, 109, 22);
 		msjeTalla.setFont(new Font("Arial", Font.PLAIN, 12));
-		add(msjeTalla);
+		getContentPane().add(msjeTalla);
 		
-		ingresoTalla = new JTextField();
-		ingresoTalla.setBounds(159, 157, 86, 20);
-		add(ingresoTalla);
-		ingresoTalla.setColumns(10);
+		talla = new JTextField();
+		talla.setBounds(159, 157, 86, 20);
+		getContentPane().add(talla);
+		talla.setText(" ");
+		talla.setColumns(10);
 		
 		JLabel msjePeso = new JLabel("Peso(KG)");
 		msjePeso.setBounds(22, 192, 95, 20);
 		msjePeso.setFont(new Font("Arial", Font.PLAIN, 11));
-		add(msjePeso);
+		getContentPane().add(msjePeso);
 		
-		ingresoPeso = new JTextField();
-		ingresoPeso.setBounds(159, 192, 86, 20);
-		add(ingresoPeso);
-		ingresoPeso.setColumns(10);
+		peso = new JTextField();
+		peso.setBounds(159, 192, 86, 20);
+		getContentPane().add(peso);
+		peso.setText(" ");
+		peso.setColumns(10);
 		
 		JLabel msjeMotivoConsulta = new JLabel("Motivo Consulta");
-		msjeMotivoConsulta.setBounds(22, 242, 130, 22);
+		msjeMotivoConsulta.setBounds(22, 235, 130, 22);
 		msjeMotivoConsulta.setFont(new Font("Arial", Font.PLAIN, 12));
-		add(msjeMotivoConsulta);
+		getContentPane().add(msjeMotivoConsulta);
 		
-		JTextArea ingresoMotivoConsulta = new JTextArea();
-		ingresoMotivoConsulta.setBounds(159, 223, 250, 70);
-		ingresoMotivoConsulta.setLineWrap(true);
-		add(ingresoMotivoConsulta);
+		motivoConsulta = new JTextArea();
+		motivoConsulta.setBounds(159, 223, 250, 42);
+		motivoConsulta.setLineWrap(true);
+		getContentPane().add(motivoConsulta);
 		
 		JLabel msjeCargaReceta = new JLabel("CARGA DE RECETA");
-		msjeCargaReceta.setBounds(104, 305, 203, 42);
+		msjeCargaReceta.setBounds(140, 341, 203, 42);
 		msjeCargaReceta.setFont(new Font("Arial", Font.BOLD, 15));
-		add(msjeCargaReceta);
+		getContentPane().add(msjeCargaReceta);
 		
 		JSeparator separadorEstudio = new JSeparator();
 		separadorEstudio.setBounds(22, 109, 416, 10);
-		add(separadorEstudio);
+		getContentPane().add(separadorEstudio);
 		
 		JSeparator separadorReceta = new JSeparator();
-		separadorReceta.setBounds(27, 300, 411, 10);
-		add(separadorReceta);
+		separadorReceta.setBounds(22, 332, 411, 10);
+		getContentPane().add(separadorReceta);
 		
 		JLabel msjeMedicamento = new JLabel("Medicamento");
-		msjeMedicamento.setBounds(27, 341, 90, 20);
+		msjeMedicamento.setBounds(22, 394, 90, 20);
 		msjeMedicamento.setFont(new Font("Arial", Font.PLAIN, 12));
-		add(msjeMedicamento);
+		getContentPane().add(msjeMedicamento);
 		
-		ingresoMedicamento = new JTextField();
-		ingresoMedicamento.setBounds(159, 341, 250, 20);
-		add(ingresoMedicamento);
-		ingresoMedicamento.setColumns(10);
+		medicamento = new JTextField();
+		medicamento.setBounds(159, 394, 250, 20);
+		getContentPane().add(medicamento);
+		medicamento.setColumns(10);
 		
 		JLabel msjeInstruccionesAlPaciente = new JLabel("Instrucciones al paciente");
-		msjeInstruccionesAlPaciente.setBounds(22, 389, 144, 20);
+		msjeInstruccionesAlPaciente.setBounds(8, 467, 144, 20);
 		msjeInstruccionesAlPaciente.setFont(new Font("Arial", Font.PLAIN, 12));
-		add(msjeInstruccionesAlPaciente);
+		getContentPane().add(msjeInstruccionesAlPaciente);
 		
-		JTextArea ingresoInstruccionesAlPaciente = new JTextArea();
-		ingresoInstruccionesAlPaciente.setBounds(159, 372, 250, 70);
-		ingresoInstruccionesAlPaciente.setLineWrap(true);
-		add(ingresoInstruccionesAlPaciente);
+		instruccionesAlPaciente = new JTextArea();
+		instruccionesAlPaciente.setBounds(159, 442, 250, 70);
+		instruccionesAlPaciente.setLineWrap(true);
+		getContentPane().add(instruccionesAlPaciente);
 		
 		JLabel msjeInstruccionesAlFtico = new JLabel("Instrucciones al ftico.");
-		msjeInstruccionesAlFtico.setBounds(22, 480, 161, 29);
+		msjeInstruccionesAlFtico.setBounds(18, 563, 161, 29);
 		msjeInstruccionesAlFtico.setFont(new Font("Arial", Font.PLAIN, 12));
-		add(msjeInstruccionesAlFtico);
+		getContentPane().add(msjeInstruccionesAlFtico);
 		
-		JTextArea instruccionesAlFtico = new JTextArea();
-		instruccionesAlFtico.setBounds(159, 453, 250, 77);
+		instruccionesAlFtico = new JTextArea();
+		instruccionesAlFtico.setBounds(159, 537, 250, 77);
 		instruccionesAlFtico.setLineWrap(true);
-		add(instruccionesAlFtico);
+		getContentPane().add(instruccionesAlFtico);
 		
 		cargar = new JButton("Cargar");
-		cargar.setBounds(104, 541, 95, 39);
-		add(cargar);
+		cargar.setBounds(80, 625, 95, 39);
+		getContentPane().add(cargar);
 		
 		cancelar = new JButton("Cancelar");
-		cancelar.setBounds(312, 541, 90, 39);
-		add(cancelar);
+		cancelar.setBounds(288, 625, 90, 39);
+		getContentPane().add(cancelar);
+		
+		JLabel msjeDiagnostico = new JLabel("Diagn\u00F3stico");
+		msjeDiagnostico.setFont(new Font("Arial", Font.PLAIN, 12));
+		msjeDiagnostico.setBounds(22, 281, 95, 20);
+		getContentPane().add(msjeDiagnostico);
+		
+		diagnostico = new JTextArea();
+		diagnostico.setLineWrap(true);
+		diagnostico.setBounds(159, 279, 250, 42);
+		getContentPane().add(diagnostico);
 		
 		
 		ControlPlanillaPaciente cPP=new ControlPlanillaPaciente(this);
@@ -159,28 +179,58 @@ public class PlanillaPaciente extends JFrame
 		return cancelar;
 	}
 
-	public String getIngresoDNIPaciente() 
+	public String getDniPaciente() 
 	{
-		return ingresoDNIPaciente.getText();
+		return dniPaciente.getText();
 	}
 
-	public String getIngresoTalla() 
+	public float getTalla() 
 	{
-		return ingresoTalla.getText();
+		return  Float.parseFloat(talla.getText());
 	}
 
-	public String  getIngresoPeso() 
+	public float  getPeso() 
 	{
-		return ingresoPeso.getText();
+		return Float.parseFloat(peso.getText());
 	}
 
-	public String getIngresoMedicamento() 
+	public String getMedicamento() 
 	{
-		return ingresoMedicamento.getText();
+		return medicamento.getText();
 	}
 
 	public JButton getCargar()
 	{
 		return cargar;
 	}
+	
+	public boolean getAsistencia()
+	{
+		if(asistencia.getSelectedItem().equals("Sí"))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public String getMotivoConsulta() {
+		return motivoConsulta.getText();
+	}
+
+	public String getInstruccionesAlPaciente() {
+		return instruccionesAlPaciente.getText();
+	}
+
+
+	public String getInstruccionesAlFtico() {
+		return instruccionesAlFtico.getText();
+	}
+
+	public String getDiagnostico() {
+		return diagnostico.getText();
+	}
+	
 }
