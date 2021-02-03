@@ -10,42 +10,57 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import controlador.ControlVentanaMedico;
+import javax.swing.ImageIcon;
 
-public class VentanaMedico extends JFrame
-{
-	private JButton planillaPacientes;
-	private JButton turnoPacientes;
+public class VentanaMedico extends JFrame {
 	
+	private  JButton turnoPacientes;
+	private JButton planillaPacientes;
+	private JButton imprimirPlanillaPaciente;
 	
 	public VentanaMedico()
 	{
 		 //Propiedades de la ventana principal.
 		 setTitle("Sistema Médico");
-		 setSize(400,300);
+		 setSize(321,376);
 		 setLocationRelativeTo(null);
 		 setResizable(false);
-		 setLayout(new BorderLayout());
+		 getContentPane().setLayout(null);
 		 
-		 //Propieades de la lamina superior
-		 JPanel laminaSuperior=new JPanel();
-		 laminaSuperior.setLayout(new FlowLayout());
-		 JLabel tituloPrincipal=new JLabel("SISTEMA MÉDICO");
-		 tituloPrincipal.setFont(new Font("Arial",Font.BOLD,40));
-		 laminaSuperior.add(tituloPrincipal);
-		 add(laminaSuperior,BorderLayout.NORTH);
+		 JLabel tituloPrincipal = new JLabel("SISTEMA M\u00C9DICO");
+		 tituloPrincipal.setFont(new Font("Arial", Font.BOLD, 20));
+		 tituloPrincipal.setBounds(71, 11, 177, 38);
+		 getContentPane().add(tituloPrincipal);
 		 
-		 //Propieades de la laminaCentral
-		 JPanel laminaCentral=new JPanel();
-		 laminaCentral.setLayout(new FlowLayout());
-		 JLabel panelDeControl=new JLabel("PANEL DE CONTROL MÉDICO");
-		 laminaCentral.add(panelDeControl);
-		 panelDeControl.setFont(new Font("Arial",Font.BOLD,25));
-		 planillaPacientes=new JButton("PLANILLA PACIENTE");	 
-		 laminaCentral.add(planillaPacientes);
-		 turnoPacientes=new JButton("TURNO PACIENTE");
-		 laminaCentral.add(turnoPacientes);
-		 add(laminaCentral,BorderLayout.CENTER);
+		 planillaPacientes = new JButton("");
+		 planillaPacientes.setIcon(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\clinicaMedica\\ClinicaMedica\\src\\icon\\ventanaMedico\\planillaPaciente.png"));
+		 planillaPacientes.setBounds(55, 87, 50, 50);
+		 getContentPane().add(planillaPacientes);
 		 
+		 JLabel msjePlanilaPaciente = new JLabel("Planilla Paciente");
+		 msjePlanilaPaciente.setFont(new Font("Arial", Font.BOLD, 12));
+		 msjePlanilaPaciente.setBounds(38, 148, 94, 14);
+		 getContentPane().add(msjePlanilaPaciente);
+		 
+		 turnoPacientes = new JButton();
+		 turnoPacientes.setIcon(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\clinicaMedica\\ClinicaMedica\\src\\icon\\ventanaMedico\\turno.png"));
+		 turnoPacientes.setBounds(198, 87, 50, 50);
+		 getContentPane().add(turnoPacientes);
+		 
+		 JLabel msjeTurnoPacientes = new JLabel("Turno de Pacientes");
+		 msjeTurnoPacientes.setFont(new Font("Arial", Font.BOLD, 12));
+		 msjeTurnoPacientes.setBounds(171, 148, 110, 14);
+		 getContentPane().add(msjeTurnoPacientes);
+		 
+		 imprimirPlanillaPaciente = new JButton();
+		 imprimirPlanillaPaciente.setIcon(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\clinicaMedica\\ClinicaMedica\\src\\icon\\ventanaMedico\\imprimirPlanillaPaciente.png"));
+		 imprimirPlanillaPaciente.setBounds(55, 198, 50, 50);
+		 getContentPane().add(imprimirPlanillaPaciente);
+		 
+		 JLabel msjeImprimirPlanillaPaciente = new JLabel("Imprimir Planilla");
+		 msjeImprimirPlanillaPaciente.setFont(new Font("Arial", Font.BOLD, 12));
+		 msjeImprimirPlanillaPaciente.setBounds(38, 258, 100, 14);
+		 getContentPane().add(msjeImprimirPlanillaPaciente);
 		 
 		 ControlVentanaMedico cVM=new ControlVentanaMedico(this);
 		 
@@ -72,7 +87,4 @@ public class VentanaMedico extends JFrame
 	{
 		this.turnoPacientes = turnoPacientes;
 	}
-
-	
-
 }

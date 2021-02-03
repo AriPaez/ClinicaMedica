@@ -2,6 +2,7 @@ package vista;
 
 import java.awt.FlowLayout;
 import java.awt.Font;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -14,6 +15,7 @@ import javax.swing.JTextField;
 import controlador.ControlPlanillaPaciente;
 
 public class PlanillaPaciente extends JFrame {
+
 
 	private JTextField dniPaciente;
 	private JTextField talla;
@@ -233,4 +235,5 @@ public class PlanillaPaciente extends JFrame {
 		return diagnostico.getText();
 	}
 	
+
 }

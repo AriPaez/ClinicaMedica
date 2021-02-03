@@ -340,7 +340,28 @@ GO
 
 EXEC registrarPlanillaPaciente '34326587','','','','','','','','',''
 
+--Procedimiento que muestra el estudio y receta de un paciente.
+CREATE PROCEDURE filtrarEstudioYReceta(@dniPaciente VARCHAR(8))
+AS
+BEGIN TRY
+IF NOT EXISTS (SELECT dniPaciente FROM turno WHERE dniPaciente=@dniPaciente)
+BEGIN
+	RAISERROR('El paciente ingresado no existe en la BBDD',14,1)
+END
+ELSE
+BEGIN
+	SELECT fechaConsulta AS [Fecha Estudio],peso,talla,motivoConsulta,diagnostico,
+	medicamento,instruccionesAlPaciente,instruccionesALaFarmacia,dniPaciente
+	FROM Estudio AS est INNER JOIN Receta AS res ON(res.idEstudio=est.idEstudio)
+	WHERE res.dniPaciente=@dniPaciente
+END
+END TRY
+BEGIN CATCH
+		DECLARE @ErrorMessage NVARCHAR(100);
+		SELECT  @ErrorMessage = ERROR_MESSAGE()
+		RAISERROR ( @ErrorMessage,14,1);
+END CATCH
+ 
+EXEC filtrarEstudioYReceta '34345456'
 
  
- 
-

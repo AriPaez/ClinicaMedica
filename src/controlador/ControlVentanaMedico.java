@@ -6,8 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
 import vista.PlanillaPaciente;
-import vista.RegistroTurno;
 import vista.VentanaMedico;
+import vista.VentanaTurnoDisponibles;
 
 public class ControlVentanaMedico implements ActionListener {
 
@@ -36,7 +36,7 @@ public class ControlVentanaMedico implements ActionListener {
 			// Se cierra la ventanaMedico
 			ventanaMedico.dispose();
 			// y se abre PlanillaPaciente
-			RegistroTurno tP = new RegistroTurno();
+			VentanaTurnoDisponibles tP = new VentanaTurnoDisponibles();
 			tP.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			tP.setVisible(true);
 

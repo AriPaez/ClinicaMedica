@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
-import vista.VentanaAdministrador;
+import principal.VentanaAdministrador;
 import vista.VentanaAsignacionSobreTurno;
 import vista.VentanaAsignacionTurno;
 import vista.VentanaConsultaTurno;
