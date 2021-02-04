@@ -100,7 +100,7 @@ public class VentanaRegistrarPaciente extends JFrame {
 		guardar.setBounds(90, 389, 50, 50);
 		laminaPrincipal.add(guardar);
 		
-		cancelar = new JButton(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\clinicaMedica\\ClinicaMedica\\src\\icon\\registrarPaciente\\cancelar.jpg")); 
+		cancelar = new JButton(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\clinicaMedica\\ClinicaMedica\\src\\icon\\ventanaMedico\\salir.png")); 
 		cancelar.setBounds(231, 389, 50, 50);
 		laminaPrincipal.add(cancelar);
 		
@@ -129,9 +129,9 @@ public class VentanaRegistrarPaciente extends JFrame {
 		msjeGuardar.setBounds(90, 436, 69, 14);
 		laminaPrincipal.add(msjeGuardar);
 		
-		JLabel msjeCancelar = new JLabel("CANCELAR");
+		JLabel msjeCancelar = new JLabel("     SALIR");
 		msjeCancelar.setFont(new Font("Arial", Font.BOLD, 12));
-		msjeCancelar.setBounds(226, 436, 69, 14);
+		msjeCancelar.setBounds(226, 436, 85, 14);
 		laminaPrincipal.add(msjeCancelar);
 		
 		ControlVentanaRegistrarPaciente cVR=new ControlVentanaRegistrarPaciente(this);

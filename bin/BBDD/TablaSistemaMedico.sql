@@ -13,7 +13,7 @@ CREATE TABLE Medico
 
 CREATE TABLE AreaMedica
 (
-    idAreaMedica INT PRIMARY KEY NOT NULL,
+    idAreaMedica INT  PRIMARY KEY IDENTITY(1,1) NOT NULL,
 	nombre VARCHAR(15),	
 	dniMedico VARCHAR(8) NOT NULL
 	FOREIGN KEY(dniMedico) REFERENCES Medico(dniMedico)
@@ -45,7 +45,7 @@ CREATE TABLE Paciente
 
 CREATE TABLE Estudio
 (
-	idEstudio INT PRIMARY KEY NOT NULL,
+	idEstudio INT  PRIMARY KEY IDENTITY(1,1) NOT NULL,
 	fechaConsulta DATE NOT NULL,
 	peso FLOAT NOT NULL,
 	talla FLOAT NOT NULL,
@@ -58,7 +58,7 @@ CREATE TABLE Estudio
 
 CREATE TABLE Receta
 (
-	idReceta INT PRIMARY KEY NOT NULL,
+	idReceta INT  PRIMARY KEY IDENTITY(1,1) NOT NULL,
 	medicamento VARCHAR(40) NOT NULL,
 	instruccionesAlPaciente VARCHAR(40) NOT NULL,
 	instruccionesALaFarmacia VARCHAR(50) NOT NULL,
@@ -71,17 +71,46 @@ CREATE TABLE Receta
 
 )
 
-CREATE TABLE Turno
+ALTER TABLE Turno
 (
 	idTurno INT  PRIMARY KEY IDENTITY(1,1) NOT NULL,
 	fecha DATE,
 	horaInicio TIME,
 	horaFin TIME,
+	asistencia BIT,
 	dniPaciente VARCHAR(8) NOT NULL,
 	dniMedico VARCHAR(8) NOT NULL,
 	FOREIGN KEY(dniPaciente) REFERENCES Paciente(dniPaciente), 
 	FOREIGN KEY(dniMedico) REFERENCES Medico(dniMedico),
 )
 
-SET IDENTITY_INSERT Turno OFF
+SET IDENTITY_INSERT AUXTURNO ON
+
+--Se requiere agregar una columa asistencia entre las columas horaFin y dniPaciente
+--Para ello, primero se crea una tabla auxiliar de nombre Turno2
+CREATE TABLE auxTurno
+(
+	idTurno INT  PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	fecha DATE,
+	horaInicio TIME,
+	horaFin TIME,
+	asistencia BIT,
+	dniPaciente VARCHAR(8) NOT NULL,
+	dniMedico VARCHAR(8) NOT NULL,
+	FOREIGN KEY(dniPaciente) REFERENCES Paciente(dniPaciente), 
+	FOREIGN KEY(dniMedico) REFERENCES Medico(dniMedico),
+)
+
+--Respectivamente, se copia el contenido de la tabla turno a la tabla auxiliar turno2
+INSERT INTO auxTurno(idTurno,fecha,horaInicio,horaFin,dniPaciente,dniMedico) select *  from  turno
+
+--Se borra la tabla original turno
+drop table Turno
+
+-- Se renombra la tabla auxiliar turno2.
+EXEC sp_rename 'auxTurno','turno' 
+
+   
+
+
  

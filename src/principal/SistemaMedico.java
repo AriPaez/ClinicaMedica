@@ -2,14 +2,14 @@ package principal;
 
 import javax.swing.JFrame;
 
-import vista.Login;
+import vista.VentanaAdministrador;
 public class SistemaMedico 
 {
 
 	public static void main(String[] args) 
 	{ 
 		 
-		 Login l=new Login();
+		 VentanaAdministrador l=new VentanaAdministrador();
 		 l.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		 l.setVisible(true);
 		 

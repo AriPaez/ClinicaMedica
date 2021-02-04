@@ -340,7 +340,7 @@ GO
 
 EXEC registrarPlanillaPaciente '34326587','','','','','','','','',''
 
---Procedimiento que muestra el estudio y receta de un paciente.
+--Procedimiento que filtra el estudio y receta de un paciente.
 CREATE PROCEDURE filtrarEstudioYReceta(@dniPaciente VARCHAR(8))
 AS
 BEGIN TRY
@@ -363,5 +363,37 @@ BEGIN CATCH
 END CATCH
  
 EXEC filtrarEstudioYReceta '34345456'
+
+--Procedimiento que muestra el estudio y receta de un paciente.
+ALTER PROCEDURE mostrarEstudioYReceta
+AS
+BEGIN TRY
+BEGIN
+	SELECT fechaConsulta AS [Fecha Estudio],peso,talla,motivoConsulta,diagnostico,
+	medicamento,instruccionesAlPaciente,instruccionesALaFarmacia,dniPaciente
+	FROM Estudio AS est INNER JOIN Receta AS res ON(res.idEstudio=est.idEstudio)
+END
+END TRY
+BEGIN CATCH
+	    DECLARE @ErrorMessage  VARCHAR(100);
+		SELECT  @ErrorMessage = ERROR_MESSAGE()
+		RAISERROR ( @ErrorMessage,14,1);
+END CATCH
+ 
+ 
+EXEC mostrarEstudioYReceta 
+
+
+--Notificaciones de inasistencias a turno de pacientes.
+GO
+CREATE PROCEDURE notificaciones
+AS
+SELECT dniPaciente,COUNT(asistencia) AS [Inasistencias a turno]
+FROM turno
+WHERE asistencia IS NULL
+GROUP BY dniPaciente
+GO
+
+EXEC notificaciones
 
  

@@ -14,7 +14,7 @@ import java.sql.Time;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import principal.VentanaAdministrador;
+import vista.VentanaAdministrador;
 import vista.VentanaAsignacionSobreTurno;
 
 public class ControlSobreTurno implements ActionListener, PropertyChangeListener {

@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import principal.VentanaAdministrador;
+import vista.VentanaAdministrador;
 import vista.VentanaConsultaTurno;
 
 public class ControlVentanaConsultaTurno implements ActionListener {

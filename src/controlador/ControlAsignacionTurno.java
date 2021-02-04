@@ -20,7 +20,7 @@ import java.util.LinkedList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import principal.VentanaAdministrador;
+import vista.VentanaAdministrador;
 import vista.VentanaAsignacionTurno;
 
 public class ControlAsignacionTurno extends WindowAdapter implements ActionListener,PropertyChangeListener,ItemListener {

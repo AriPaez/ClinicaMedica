@@ -8,9 +8,9 @@ import java.sql.SQLException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import principal.VentanaAdministrador;
 import vista.Login;
 import vista.TipoUsuario;
+import vista.VentanaAdministrador;
 import vista.VentanaMedico;
 
 public class ControlLoginRegistro implements ActionListener {

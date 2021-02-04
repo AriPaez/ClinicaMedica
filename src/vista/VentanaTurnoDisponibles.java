@@ -58,7 +58,7 @@ public class VentanaTurnoDisponibles extends JFrame
 		dniPaciente.setColumns(10);
 		
 		filtrar = new JButton();
-		filtrar.setIcon(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\clinicaMedica\\ClinicaMedica\\src\\icon\\ventanaAdministrador\\buscar.jpg"));
+		filtrar.setIcon(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\clinicaMedica\\ClinicaMedica\\src\\icon\\ventanaMedico\\filtrar.png"));
 		filtrar.setBounds(96, 385, 50, 50);
 		getContentPane().add(filtrar);
 		
@@ -83,7 +83,9 @@ public class VentanaTurnoDisponibles extends JFrame
 		
 		filtrar.addActionListener(cVTD);
 		salir.addActionListener(cVTD);
-		
+		//Pemite cargar el area de texto al abrirse la ventana
+		//ventanaturnosdisponibles.
+		addWindowListener(cVTD);
 		
 	}
 

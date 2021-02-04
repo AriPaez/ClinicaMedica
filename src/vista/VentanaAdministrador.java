@@ -1,4 +1,4 @@
-package principal;
+package vista;
 
 import java.awt.Font;
 
@@ -7,8 +7,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSeparator;
 
+import controlador.ControlNotificacion;
 import controlador.ControlVentanaAdministrador;
 
 public class VentanaAdministrador extends JFrame {
@@ -18,12 +18,11 @@ public class VentanaAdministrador extends JFrame {
 	private JButton asignarTurno;
 	private JButton sobreTurno;
 	private JButton registrarPaciente;
-	private JButton notificaciones;
 	private JLabel msjeAsignarTurno;
 	private JLabel msjeConsultarTurno;
 	private JLabel msjeSobreTurno;
 	private JLabel msjeRegistrarPaciente;
- 
+	private Notificacion notificaciones;
 	 
 	public VentanaAdministrador() {
 
@@ -69,9 +68,9 @@ public class VentanaAdministrador extends JFrame {
 		registrarPaciente.setBounds(221, 192, 50, 50);
 		laminaPrincipal.add(registrarPaciente);
 
-		notificaciones = new JButton("");
-		notificaciones.setIcon(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\clinicaMedica\\ClinicaMedica\\src\\icon\\ventanaAdministrador\\notificaciones.png"));
-		notificaciones.setBounds(293, 58, 20, 20);
+		 
+		notificaciones=new Notificacion();
+		notificaciones.setBounds(291, 43, 33, 29);
 		laminaPrincipal.add(notificaciones);
 		
 		msjeAsignarTurno = new JLabel("Asignar Turno");
@@ -102,6 +101,10 @@ public class VentanaAdministrador extends JFrame {
 		sobreTurno.addActionListener(cVA);
 		registrarPaciente.addActionListener(cVA);
 		notificaciones.addActionListener(cVA);
+		
+		ControlNotificacion cN=new ControlNotificacion(this);
+		
+		addWindowListener(cN);
 
 	}
 
@@ -121,7 +124,14 @@ public class VentanaAdministrador extends JFrame {
 		return registrarPaciente;
 	}
 
-	public JButton getNotificaciones() {
+	public Notificacion getNotificaciones() {
 		return notificaciones;
 	}
+
+	public void setNotificaciones(int valor) {
+		
+		this.notificaciones.setNumero(valor);
+	}
+	 
+	
 }
