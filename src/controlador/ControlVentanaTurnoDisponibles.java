@@ -11,7 +11,9 @@ import java.sql.Statement;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.table.AbstractTableModel;
 
+import modelo.ModeloTabla;
 import vista.VentanaMedico;
 import vista.VentanaTurnoDisponibles;
 
@@ -27,23 +29,21 @@ public class ControlVentanaTurnoDisponibles extends WindowAdapter implements Act
 		vM = new VentanaMedico();
 	}
 
-	//Carga los datos de la tabla estudio y receta al area de texto
-	//al abrise la ventana ventenaTurnosDisponible.
+	// Carga los datos de la tabla estudio y receta al area de texto
+	// al abrise la ventana ventenaTurnosDisponible.
 	public void windowOpened(WindowEvent e) {
 
 		try {
-			
-			CallableStatement mostrarEstudioYReceta = conexionBBDD.getConexionBBDD()
-			.prepareCall("{call mostrarEstudioYReceta()}");
+
+			CallableStatement mostrarEstudioYReceta = conexionBBDD.getConexionBBDD().prepareCall(
+			"{call mostrarEstudioYReceta()}", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
 			ResultSet tabla = mostrarEstudioYReceta.executeQuery();
 
-			while (tabla.next()) {
-				ventanaTurnosDisponibles.getTurnosPacientes()
-				.append(tabla.getDate(1) + " " + tabla.getFloat(2) + " " + tabla.getFloat(3) + " "
-				+ tabla.getString(4) + " " + tabla.getString(5) + " " + tabla.getString(6) + " "
-				+ tabla.getString(7) + " " + tabla.getString(8) + " " + tabla.getString(9));
-			}
+			AbstractTableModel mTN = new ModeloTabla(tabla);
+
+			ventanaTurnosDisponibles.getTabla().setModel(mTN);
+			ventanaTurnosDisponibles.getTabla().validate();
 
 		} catch (SQLException e1) {
 
@@ -61,18 +61,19 @@ public class ControlVentanaTurnoDisponibles extends WindowAdapter implements Act
 			// Se registra asistencia de paciente al turno.
 			try {
 				CallableStatement filtrarEstudioYReceta = conexionBBDD.getConexionBBDD()
-						.prepareCall("{call filtrarEstudioYReceta(?)}");
+				.prepareCall("{call filtrarEstudioYReceta(?)}", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
 				filtrarEstudioYReceta.setString(1, ventanaTurnosDisponibles.getDniPaciente());
 
 				ResultSet tabla = filtrarEstudioYReceta.executeQuery();
-
-				while (tabla.next()) {
-					ventanaTurnosDisponibles.getTurnosPacientes()
-							.append(tabla.getDate(1) + " " + tabla.getFloat(2) + " " + tabla.getFloat(3) + " "
-									+ tabla.getString(4) + " " + tabla.getString(5) + " " + tabla.getString(6) + " "
-									+ tabla.getString(7) + " " + tabla.getString(8) + " " + tabla.getString(9));
-				}
+ 
+				 
+				
+				AbstractTableModel mTN=new ModeloTabla(tabla);
+				
+				ventanaTurnosDisponibles.getTabla().setModel(mTN);
+				ventanaTurnosDisponibles.getTabla().validate();
+				 
 
 			} catch (SQLException e1) {
 

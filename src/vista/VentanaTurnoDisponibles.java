@@ -11,23 +11,25 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import controlador.ControlVentanaTurnoDisponibles;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
 
 public class VentanaTurnoDisponibles extends JFrame 
 {
 	private JTextField dniPaciente;
 	private JButton filtrar;
 	private JButton salir;
-	private JTextArea turnosPacientes;
+	private JTable tabla;
 	
 	public VentanaTurnoDisponibles() {
 		
 		//Caracteristica ventana.
-		setSize(460, 500);
+		setSize(800, 500);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
 		  
 		JPanel laminaPrincipal = new JPanel();
-		laminaPrincipal.setBounds(0, 0, 434, 350);
+		laminaPrincipal.setBounds(0, 0, 784, 461);
 		laminaPrincipal.setLayout(null);
 		getContentPane().add(laminaPrincipal);
 		
@@ -35,12 +37,6 @@ public class VentanaTurnoDisponibles extends JFrame
 		msjeSistemaMedico.setFont(new Font("Arial", Font.PLAIN, 30));
 		msjeSistemaMedico.setBounds(85, 0, 257, 59);
 		laminaPrincipal.add(msjeSistemaMedico);
-		
-		turnosPacientes = new JTextArea();
-		turnosPacientes.setEditable(false);
-		turnosPacientes.setLineWrap(true);
-		turnosPacientes.setBounds(10, 140, 424, 233);
-		laminaPrincipal.add(turnosPacientes);
 		
 		JLabel msjeTurnosDisponibles = new JLabel("TURNOS DISPONIBLES");
 		msjeTurnosDisponibles.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -58,31 +54,37 @@ public class VentanaTurnoDisponibles extends JFrame
 		dniPaciente.setColumns(10);
 		
 		filtrar = new JButton();
+		filtrar.setBounds(279, 373, 50, 50);
+		laminaPrincipal.add(filtrar);
 		filtrar.setIcon(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\clinicaMedica\\ClinicaMedica\\src\\icon\\ventanaMedico\\filtrar.png"));
-		filtrar.setBounds(96, 385, 50, 50);
-		getContentPane().add(filtrar);
 		
 		salir = new JButton();
+		salir.setBounds(489, 373, 50, 50);
+		laminaPrincipal.add(salir);
 		salir.setIcon(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\clinicaMedica\\ClinicaMedica\\src\\icon\\ventanaMedico\\salir.png"));
-		salir.setBounds(279, 385, 50, 50);
-		getContentPane().add(salir);
 		
 		JLabel msjeFiltrar = new JLabel("Filtrar");
+		msjeFiltrar.setBounds(283, 425, 46, 14);
+		laminaPrincipal.add(msjeFiltrar);
 		msjeFiltrar.setFont(new Font("Arial", Font.BOLD, 12));
-		msjeFiltrar.setBounds(100, 436, 46, 14);
-		getContentPane().add(msjeFiltrar);
 		
 		JLabel msjeSalir = new JLabel("Salir");
+		msjeSalir.setBounds(499, 425, 46, 14);
+		laminaPrincipal.add(msjeSalir);
 		msjeSalir.setFont(new Font("Arial", Font.BOLD, 12));
-		msjeSalir.setBounds(295, 436, 46, 14);
-		getContentPane().add(msjeSalir);
-		 
+		
+		
+		
+		tabla = new JTable(); 
+		JScrollPane barraDesplazamientoTabla = new JScrollPane(tabla);
+		barraDesplazamientoTabla.setBounds(0, 127, 784, 209);
+		laminaPrincipal.add(barraDesplazamientoTabla);
 		
 		ControlVentanaTurnoDisponibles cVTD=new ControlVentanaTurnoDisponibles(this);
 		
-		
-		filtrar.addActionListener(cVTD);
+		//Eventos.
 		salir.addActionListener(cVTD);
+		filtrar.addActionListener(cVTD);
 		//Pemite cargar el area de texto al abrirse la ventana
 		//ventanaturnosdisponibles.
 		addWindowListener(cVTD);
@@ -101,8 +103,8 @@ public class VentanaTurnoDisponibles extends JFrame
 		return salir;
 	}
 
-	public JTextArea getTurnosPacientes() {
-		return turnosPacientes;
+	public JTable getTabla() {
+		return tabla;
 	}
 
 	public void setDniPaciente(String dniPaciente) {
