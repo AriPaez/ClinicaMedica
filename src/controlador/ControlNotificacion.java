@@ -35,7 +35,9 @@ public class ControlNotificacion extends WindowAdapter{
 			 
 			while(tabla.next())
 			{
-				
+				//Si un paciente al faltado >=4 veces ==>
+				//cantidadDeInasistenciaDePacientes para respectivamente
+				//mostrar la notificacion en la campanilla de notificacion.
 				if(tabla.getInt(2)>=4)
 				{
 					cantidadDeInasistenciaDePacientes++;

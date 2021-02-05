@@ -7,7 +7,9 @@ import java.sql.ResultSet;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.table.AbstractTableModel;
 
+import modelo.ModeloTabla;
 import vista.VentanaAdministrador;
 import vista.VentanaConsultaTurno;
 
@@ -34,19 +36,17 @@ public class ControlVentanaConsultaTurno implements ActionListener {
 			try {
 
 				CallableStatement obtenerTurnoDePaciente = conexionBBDD.getConexionBBDD()
-				.prepareCall("{call obtenerTurnoDePaciente(?)}");
+				.prepareCall("{call obtenerTurnoDePaciente(?)}", ResultSet.TYPE_SCROLL_INSENSITIVE,
+				 ResultSet.CONCUR_READ_ONLY);
 
 				obtenerTurnoDePaciente.setString(1, ventanaConsultaTurno.getDniPaciente());
 
 				ResultSet tabla = obtenerTurnoDePaciente.executeQuery();
 
-				while (tabla.next()) {
-
-					ventanaConsultaTurno.getAreaDeDatos()
-					.append(tabla.getString(1) + "   " + tabla.getString(2) + "   " + tabla.getString(3) + "   "
-					+ tabla.getString(4) + "   " + tabla.getString(5) + "   " + tabla.getString(6));
-
-				}
+				AbstractTableModel mTN=new ModeloTabla(tabla);
+				
+				ventanaNotificacion.getTabla().setModel(mTN);
+				ventanaNotificacion.getTabla().validate();
 
 
 			} catch (Exception exeptionBBDD) {
@@ -57,13 +57,24 @@ public class ControlVentanaConsultaTurno implements ActionListener {
 
 			}
 		} else {
-			ventanaConsultaTurno.dispose();
-
-			VentanaAdministrador vA = new VentanaAdministrador();
-			vA.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			vA.setVisible(true);
+			
+			cerrarVentanaConsultaTurno();
+			abrirVentanaAdministrador();
+			
 		}
 
+	}
+	
+	public void abrirVentanaAdministrador()
+	{
+		VentanaAdministrador vA = new VentanaAdministrador();
+		vA.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		vA.setVisible(true);
+	}
+	
+	public void cerrarVentanaConsultaTurno()
+	{
+		ventanaConsultaTurno.dispose();
 	}
 
 }

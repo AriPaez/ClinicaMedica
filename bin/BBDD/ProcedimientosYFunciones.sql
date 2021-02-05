@@ -380,3 +380,53 @@ BEGIN CATCH
 		RAISERROR ( @ErrorMessage,14,1);
 END CATCH
  
+ 
+EXEC mostrarEstudioYReceta 
+
+
+--Notificaciones de inasistencias a turno de pacientes.Se filtra
+--solo los paciente que hayan falta >=4 veces.
+GO
+ALTER PROCEDURE notificaciones
+AS
+SELECT dniPaciente,COUNT(*) AS Inasistencias
+FROM turno
+WHERE asistencia IS NULL
+GROUP BY dniPaciente 
+HAVING COUNT(*)>=4
+GO
+
+EXEC notificaciones
+
+--Mostrar pacientes con inasistencias. Si no existe ninguna
+--persona con inasistencias >=4, se lanza un error.
+ ALTER PROCEDURE mostararPacientesAusentes
+ AS
+ BEGIN TRY
+	  DECLARE @maximoValor INT
+	  SELECT TOP 1 @maximoValor=COUNT(*)  
+	  FROM turno
+	  WHERE asistencia IS NULL
+	  GROUP BY dniPaciente 
+	  ORDER BY COUNT(asistencia)  asc;
+	  IF(@maximoValor)<4
+		 RAISERROR('NO EXISTE PACIENTES CON INASISTENCIAS',14,1)
+	  ELSE 
+		  SELECT dniPaciente,COUNT(*) Inasistencias 
+		  FROM turno
+		  WHERE asistencia IS NULL
+		  GROUP BY dniPaciente 
+		  HAVING COUNT(*)>=4
+ END TRY
+ BEGIN CATCH
+	DECLARE @mensajeDeError VARCHAR(100)
+	SET @mensajeDeError=ERROR_MESSAGE()
+	RAISERROR(@mensajeDeError,14,1)
+ END CATCH
+ 
+EXEC mostararPacientesAusentes
+ 
+  
+
+
+ 

@@ -15,7 +15,7 @@ public class Notificacion extends JButton {
 	private Image imagenNotificacion;
 	 
 	 
-	/*Crea un nuevo JSBadgeButton con el valor ya aplicado y mostrando la insignia. *
+	/*Crea un nuevo Notificacion con el valor ya aplicado y mostrando la insignia. *
 	 * @param valor: el valor que se mostrará inicialmente en la insignia.
 	 */
 	public Notificacion(int valor) 

@@ -1,0 +1,95 @@
+package modelo;
+
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+
+import javax.swing.table.AbstractTableModel;
+
+public class ModeloTabla extends AbstractTableModel {
+
+	private ResultSet tabla;
+	private ResultSetMetaData datosBBDD;
+	
+	
+	public ModeloTabla(ResultSet unResulset)
+	{
+		tabla=unResulset;
+		
+		try
+		{
+			datosBBDD=tabla.getMetaData();
+		}
+		catch (SQLException e)
+		{
+			 
+			e.printStackTrace();
+		}
+	} 
+	
+	@Override
+	public Object getValueAt(int rowIndex, int columnIndex) {
+		 
+		try
+		{
+			tabla.absolute(rowIndex+1);
+			return tabla.getObject(columnIndex+1);
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+			return null;
+		} 
+	}
+	
+	public String getColumnName(int c)
+	{
+		 
+		try 
+		{
+			return 	datosBBDD.getColumnName(c+1);
+		} 
+		catch (SQLException e) {
+			 
+			e.printStackTrace();
+			return null;
+		}
+		  
+	}
+	
+	@Override
+	public int getRowCount() {
+	 
+		try {
+		 
+			 tabla.last();
+			 
+			 
+			return tabla.getRow();
+			
+		} 
+		catch (SQLException e) {
+			
+			e.printStackTrace();
+			return 0;
+		}
+	
+		
+	}
+	  
+	@Override
+	public int getColumnCount() 
+	{
+		 
+		try
+		{
+			return datosBBDD.getColumnCount();
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+}
