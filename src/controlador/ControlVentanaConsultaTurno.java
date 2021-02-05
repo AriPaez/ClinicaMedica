@@ -30,8 +30,7 @@ public class ControlVentanaConsultaTurno implements ActionListener {
 
 		if (botonElegido == ventanaConsultaTurno.getBuscar()) {
 
-			// reset de area de texto.
-			ventanaConsultaTurno.getAreaDeDatos().setText("");
+			 
 
 			try {
 
@@ -45,16 +44,14 @@ public class ControlVentanaConsultaTurno implements ActionListener {
 
 				AbstractTableModel mTN=new ModeloTabla(tabla);
 				
-				ventanaNotificacion.getTabla().setModel(mTN);
-				ventanaNotificacion.getTabla().validate();
+				ventanaConsultaTurno.getTabla().setModel(mTN);
+				ventanaConsultaTurno.getTabla().validate();
 
 
 			} catch (Exception exeptionBBDD) {
 
 				JOptionPane.showMessageDialog(null, exeptionBBDD.getMessage(), "BBDD", 2, null);
-
-				ventanaConsultaTurno.getAreaDeDatos().setText("");
-
+ 
 			}
 		} else {
 			

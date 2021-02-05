@@ -11,19 +11,21 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import controlador.ControlVentanaConsultaTurno;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
 
 public class VentanaConsultaTurno extends JFrame {
 	
 	private JTextField dniPaciente;
-	private JTextArea areaDeDatos;
-	private JButton cancelar ;
+	private JButton salir ;
 	private JButton buscar ;
+	private JTable tabla;
 	
 	public VentanaConsultaTurno()
 	{
 		setTitle("CONSULTA DE TURNOS");
 		getContentPane().setLayout(null);
-		setSize(482, 282);
+		setSize(470, 282);
 		setLocationRelativeTo(null);
 		JPanel laminaPrincipal = new JPanel();
 		laminaPrincipal.setBounds(0, 0, 473, 249);
@@ -45,14 +47,9 @@ public class VentanaConsultaTurno extends JFrame {
 		laminaPrincipal.add(dniPaciente);
 		dniPaciente.setColumns(10);
 		
-		areaDeDatos = new JTextArea();
-		areaDeDatos.setEditable(false);
-		areaDeDatos.setBounds(10, 105, 457, 30);
-		laminaPrincipal.add(areaDeDatos);
-		
 		buscar = new JButton();
 		buscar.setIcon(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\clinicaMedica\\ClinicaMedica\\src\\icon\\ventanaAdministrador\\buscar.jpg"));
-		buscar.setBounds(99, 162, 50, 50);
+		buscar.setBounds(99, 172, 50, 50);
 		laminaPrincipal.add(buscar);
 		
 		JLabel msjeBuscar = new JLabel("Buscar");
@@ -60,21 +57,28 @@ public class VentanaConsultaTurno extends JFrame {
 		msjeBuscar.setBounds(99, 223, 46, 14);
 		laminaPrincipal.add(msjeBuscar);
 		
-		cancelar = new JButton();
-		cancelar.setIcon(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\clinicaMedica\\ClinicaMedica\\src\\icon\\registrarPaciente\\cancelar.jpg"));
-		cancelar.setBounds(308, 162, 50, 50);
-		laminaPrincipal.add(cancelar);
+		salir = new JButton();
+		salir.setIcon(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\clinicaMedica\\ClinicaMedica\\src\\icon\\ventanaMedico\\salir.png"));
+		salir.setBounds(312, 172, 50, 50);
+		laminaPrincipal.add(salir);
 		
-		JLabel msjeCancelar = new JLabel("Cancelar");
-		msjeCancelar.setFont(new Font("Arial", Font.BOLD, 12));
-		msjeCancelar.setBounds(308, 223, 65, 14);
-		laminaPrincipal.add(msjeCancelar);
+		JLabel msjeSalir = new JLabel("Salir");
+		msjeSalir.setFont(new Font("Arial", Font.BOLD, 12));
+		msjeSalir.setBounds(318, 223, 65, 14);
+		laminaPrincipal.add(msjeSalir);
 		
 		
+		
+		tabla = new JTable();
+		JScrollPane barraDesplazamientoTabla = new JScrollPane(tabla);
+		barraDesplazamientoTabla.setBounds(10, 88, 439, 41);
+		laminaPrincipal.add(barraDesplazamientoTabla);
+		 
+		 
 		ControlVentanaConsultaTurno cVCT=new ControlVentanaConsultaTurno(this);
 		
 		buscar.addActionListener(cVCT);
-		cancelar.addActionListener(cVCT);
+		salir.addActionListener(cVCT);
 		
 		 
 
@@ -88,20 +92,12 @@ public class VentanaConsultaTurno extends JFrame {
 		this.dniPaciente = dniPaciente;
 	}
 
-	public JTextArea getAreaDeDatos() {
-		return areaDeDatos;
+	public JButton getsalir() {
+		return salir;
 	}
 
-	public void setAreaDeDatos(JTextArea areaDeDatos) {
-		this.areaDeDatos = areaDeDatos;
-	}
-
-	public JButton getCancelar() {
-		return cancelar;
-	}
-
-	public void setCancelar(JButton cancelar) {
-		this.cancelar = cancelar;
+	public void setsalir(JButton cancelar) {
+		this.salir = cancelar;
 	}
 
 	public JButton getBuscar() {
@@ -111,8 +107,10 @@ public class VentanaConsultaTurno extends JFrame {
 	public void setBuscar(JButton buscar) {
 		this.buscar = buscar;
 	}
-	
-	
+
+	public JTable getTabla() {
+		return tabla;
+	}
 	
 	
 }
