@@ -22,17 +22,14 @@ public class ControlVentanaMedico implements ActionListener {
 
 		Object botonElegido = e.getSource();
 
-		if (botonElegido == ventanaMedico.getPlanillaPacientes())
-		{
+		if (botonElegido == ventanaMedico.getPlanillaPacientes()) {
 			// Se cierra la ventanaMedico
 			ventanaMedico.dispose();
 			// y se abre PlanillaPaciente
 			PlanillaPaciente vP = new PlanillaPaciente();
 			vP.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			vP.setVisible(true);
-		}
-		else
-		{
+		} else if (botonElegido == ventanaMedico.getTurnoPacientes()) {
 			// Se cierra la ventanaMedico
 			ventanaMedico.dispose();
 			// y se abre PlanillaPaciente
@@ -40,6 +37,9 @@ public class ControlVentanaMedico implements ActionListener {
 			tP.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			tP.setVisible(true);
 
+		} else {
+			// Se cierra la ventanaMedico
+			ventanaMedico.dispose();
 		}
 
 	}

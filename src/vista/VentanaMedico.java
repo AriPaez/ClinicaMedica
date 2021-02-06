@@ -16,7 +16,7 @@ public class VentanaMedico extends JFrame {
 	
 	private  JButton turnoPacientes;
 	private JButton planillaPacientes;
-	private JButton imprimirPlanillaPaciente;
+	private  JButton salir;
 	
 	public VentanaMedico()
 	{
@@ -52,20 +52,21 @@ public class VentanaMedico extends JFrame {
 		 msjeTurnoPacientes.setBounds(171, 148, 110, 14);
 		 getContentPane().add(msjeTurnoPacientes);
 		 
-		 imprimirPlanillaPaciente = new JButton();
-		 imprimirPlanillaPaciente.setIcon(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\clinicaMedica\\ClinicaMedica\\src\\icon\\ventanaMedico\\imprimirPlanillaPaciente.png"));
-		 imprimirPlanillaPaciente.setBounds(55, 198, 50, 50);
-		 getContentPane().add(imprimirPlanillaPaciente);
+		 salir = new JButton();
+		 salir.setIcon(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\clinicaMedica\\ClinicaMedica\\src\\icon\\ventanaMedico\\salir.png"));
+		 salir.setBounds(125, 238, 50, 50);
+		 getContentPane().add(salir);
 		 
-		 JLabel msjeImprimirPlanillaPaciente = new JLabel("Imprimir Planilla");
-		 msjeImprimirPlanillaPaciente.setFont(new Font("Arial", Font.BOLD, 12));
-		 msjeImprimirPlanillaPaciente.setBounds(38, 258, 100, 14);
-		 getContentPane().add(msjeImprimirPlanillaPaciente);
+		 JLabel msjeSalir = new JLabel("Salir");
+		 msjeSalir.setFont(new Font("Arial", Font.BOLD, 12));
+		 msjeSalir.setBounds(135, 293, 26, 14);
+		 getContentPane().add(msjeSalir);
 		 
 		 ControlVentanaMedico cVM=new ControlVentanaMedico(this);
 		 
 		 turnoPacientes.addActionListener(cVM);
 		 planillaPacientes.addActionListener(cVM);
+		 salir.addActionListener(cVM);
 	}
 	
 	public JButton getPlanillaPacientes() 
@@ -87,4 +88,10 @@ public class VentanaMedico extends JFrame {
 	{
 		this.turnoPacientes = turnoPacientes;
 	}
+
+	public JButton getSalir() {
+		return salir;
+	}
+	
+	
 }
