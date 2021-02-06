@@ -21,7 +21,7 @@ public class VentanaMedico extends JFrame {
 	public VentanaMedico()
 	{
 		 //Propiedades de la ventana principal.
-		 setTitle("Sistema Médico");
+		 setTitle("Sesión de Médico");
 		 setSize(321,376);
 		 setLocationRelativeTo(null);
 		 setResizable(false);

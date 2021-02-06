@@ -35,6 +35,7 @@ public class PlanillaPaciente extends JFrame {
 		setSize(465, 711);
 		setLocationRelativeTo(null);
 		setResizable(false);
+		setTitle("Planila Paciente");
 		getContentPane().setLayout(null);
 
 		JPanel laminaSuperior = new JPanel();

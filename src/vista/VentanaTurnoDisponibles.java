@@ -27,7 +27,7 @@ public class VentanaTurnoDisponibles extends JFrame
 		setSize(800, 500);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
-		  
+		setTitle("TURNOS DISPONIBLES");
 		JPanel laminaPrincipal = new JPanel();
 		laminaPrincipal.setBounds(0, 0, 784, 461);
 		laminaPrincipal.setLayout(null);

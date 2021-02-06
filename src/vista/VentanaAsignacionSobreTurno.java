@@ -56,7 +56,7 @@ public class VentanaAsignacionSobreTurno extends JFrame {
 	private JDateChooser dateChooser;
 
 	public VentanaAsignacionSobreTurno() {
-		setTitle("ASIGNACIÓN DE TURNOS");
+		setTitle("ASIGNACIÓN DE SOBRETURNOS");
 		getContentPane().setLayout(null);
 		setSize(434, 464);
 		setLocationRelativeTo(null);

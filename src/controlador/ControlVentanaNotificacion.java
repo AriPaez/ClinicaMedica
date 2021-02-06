@@ -28,7 +28,7 @@ public class ControlVentanaNotificacion extends WindowAdapter implements ActionL
 		
 		try 
 		{
-
+			
 			CallableStatement mostrarPacientesAusentes = conexionBBDD.getConexionBBDD()
 			.prepareCall("{call mostrarPacientesAusentes()}", ResultSet.TYPE_SCROLL_INSENSITIVE,
 		     ResultSet.CONCUR_READ_ONLY);

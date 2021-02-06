@@ -400,7 +400,7 @@ EXEC notificaciones
 
 --Mostrar pacientes con inasistencias. Si no existe ninguna
 --persona con inasistencias >=4, se lanza un error.
- ALTER PROCEDURE mostararPacientesAusentes
+ ALTER PROCEDURE mostrarPacientesAusentes
  AS
  BEGIN TRY
 	  DECLARE @maximoValor INT
@@ -412,10 +412,11 @@ EXEC notificaciones
 	  IF(@maximoValor)<4
 		 RAISERROR('NO EXISTE PACIENTES CON INASISTENCIAS',14,1)
 	  ELSE 
-		  SELECT dniPaciente,COUNT(*) Inasistencias 
-		  FROM turno
+		  SELECT t.dniPaciente,p.celular,p.email,COUNT(*) Inasistencias 
+		  FROM turno AS t INNER JOIN Paciente AS p
+		  ON(p.dniPaciente=t.dniPaciente)
 		  WHERE asistencia IS NULL
-		  GROUP BY dniPaciente 
+		  GROUP BY t.dniPaciente, t.dniPaciente,p.celular,p.email
 		  HAVING COUNT(*)>=4
  END TRY
  BEGIN CATCH
@@ -424,9 +425,5 @@ EXEC notificaciones
 	RAISERROR(@mensajeDeError,14,1)
  END CATCH
  
-EXEC mostararPacientesAusentes
- 
-  
-
-
+EXEC mostrarPacientesAusentes
  

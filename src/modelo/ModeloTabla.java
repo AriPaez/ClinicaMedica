@@ -27,40 +27,12 @@ public class ModeloTabla extends AbstractTableModel {
 		}
 	} 
 	
-	@Override
-	public Object getValueAt(int rowIndex, int columnIndex) {
-		 
-		try
-		{
-			tabla.absolute(rowIndex+1);
-			return tabla.getObject(columnIndex+1);
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-			return null;
-		} 
-	}
-	
-	public String getColumnName(int c)
-	{
-		 
-		try 
-		{
-			return 	datosBBDD.getColumnName(c+1);
-		} 
-		catch (SQLException e) {
-			 
-			e.printStackTrace();
-			return null;
-		}
-		  
-	}
 	
 	@Override
 	public int getRowCount() {
 	 
-		try {
+		try 
+		{
 		 
 			 tabla.last();
 			 
@@ -76,7 +48,7 @@ public class ModeloTabla extends AbstractTableModel {
 	
 		
 	}
-	  
+	
 	@Override
 	public int getColumnCount() 
 	{
@@ -91,5 +63,37 @@ public class ModeloTabla extends AbstractTableModel {
 		}
 		return 0;
 	}
+	
+	public String getColumnName(int c)
+	{
+		 
+		try 
+		{
+			return 	datosBBDD.getColumnName(c+1);
+		} 
+		catch (SQLException e)
+		{
+			 
+			e.printStackTrace();
+			return null;
+		}
+		  
+	}
+	
+	@Override
+	public Object getValueAt(int rowIndex, int columnIndex) {
+		 
+		try
+		{
+			tabla.absolute(rowIndex+1);
+			return tabla.getObject(columnIndex+1);
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+			return null;
+		} 
+	}
+	 
 
 }

@@ -31,7 +31,7 @@ public class VentanaAdministrador extends JFrame {
 		setResizable(false);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
-		setTitle("Sistema Médico");
+		setTitle("Sesión Administrador");
 
 		JPanel laminaPrincipal = new JPanel();
 		laminaPrincipal.setBounds(0, 0, 334, 285);

@@ -427,7 +427,3 @@ EXEC notificaciones
  
 EXEC mostrarPacientesAusentes
  
-  
-
-
- 
