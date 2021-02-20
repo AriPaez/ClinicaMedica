@@ -32,12 +32,12 @@ public class TipoUsuario extends JFrame {
 		msjeTipoUsuario.setBounds(58, 22, 289, 58);
 		laminaPrincipal.add(msjeTipoUsuario);
 		
-		administrador = new JButton(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\clinicaMedica\\ClinicaMedica\\src\\icon\\tipoUsuario\\administrador.png"));
+		administrador = new JButton(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\proyectosJava\\clinicaMedica\\ClinicaMedica\\src\\icon\\tipoUsuario\\administrador.png"));
 		 
 		administrador.setBounds(68, 99, 100, 100);
 		laminaPrincipal.add(administrador);
 		
-		medico = new JButton(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\clinicaMedica\\ClinicaMedica\\src\\icon\\tipoUsuario\\medico.png"));
+		medico = new JButton(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\proyectosJava\\clinicaMedica\\ClinicaMedica\\src\\icon\\tipoUsuario\\medico.png"));
 		medico.setBounds(217, 99, 100, 100);
 		laminaPrincipal.add(medico);
 		
