@@ -33,7 +33,7 @@ public class VentanaMedico extends JFrame {
 		 getContentPane().add(tituloPrincipal);
 		 
 		 planillaPacientes = new JButton("");
-		 planillaPacientes.setIcon(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\clinicaMedica\\ClinicaMedica\\src\\icon\\ventanaMedico\\planillaPaciente.png"));
+		 planillaPacientes.setIcon(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\proyectosJava\\clinicaMedica\\ClinicaMedica\\src\\icon\\ventanaMedico\\planillaPaciente.png"));
 		 planillaPacientes.setBounds(55, 87, 50, 50);
 		 getContentPane().add(planillaPacientes);
 		 
@@ -43,7 +43,7 @@ public class VentanaMedico extends JFrame {
 		 getContentPane().add(msjePlanilaPaciente);
 		 
 		 turnoPacientes = new JButton();
-		 turnoPacientes.setIcon(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\clinicaMedica\\ClinicaMedica\\src\\icon\\ventanaMedico\\turno.png"));
+		 turnoPacientes.setIcon(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\proyectosJava\\clinicaMedica\\ClinicaMedica\\src\\icon\\ventanaMedico\\turno.png"));
 		 turnoPacientes.setBounds(198, 87, 50, 50);
 		 getContentPane().add(turnoPacientes);
 		 
@@ -53,7 +53,7 @@ public class VentanaMedico extends JFrame {
 		 getContentPane().add(msjeTurnoPacientes);
 		 
 		 salir = new JButton();
-		 salir.setIcon(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\clinicaMedica\\ClinicaMedica\\src\\icon\\ventanaMedico\\salir.png"));
+		 salir.setIcon(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\proyectosJava\\clinicaMedica\\ClinicaMedica\\src\\icon\\ventanaMedico\\salir.png"));
 		 salir.setBounds(125, 238, 50, 50);
 		 getContentPane().add(salir);
 		 

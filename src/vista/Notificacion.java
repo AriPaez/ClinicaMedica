@@ -42,7 +42,7 @@ public class Notificacion extends JButton {
 		
 		try 
 		{
-			img=ImageIO.read(new File("C:\\Users\\ArielPaez\\Desktop\\clinicaMedica\\ClinicaMedica\\src\\icon\\ventanaAdministrador\\notificaciones.png"));
+			img=ImageIO.read(new File("C:\\Users\\ArielPaez\\Desktop\\proyectosJava\\clinicaMedica\\ClinicaMedica\\src\\icon\\ventanaAdministrador\\notificaciones.png"));
 		} 
 		catch (IOException e) {}
 		

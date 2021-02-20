@@ -33,7 +33,7 @@ public class VentanaNotificacion extends JFrame {
 		laminaPrincipal.add(tituloPrincipal);
 		
 		salir = new JButton("");
-		salir.setIcon(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\clinicaMedica\\ClinicaMedica\\src\\icon\\ventanaMedico\\salir.png"));
+		salir.setIcon(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\proyectosJava\\clinicaMedica\\ClinicaMedica\\src\\icon\\ventanaMedico\\salir.png"));
 		salir.setBounds(192, 230, 50, 50);
 		laminaPrincipal.add(salir);
 		

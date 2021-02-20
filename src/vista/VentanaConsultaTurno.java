@@ -48,7 +48,7 @@ public class VentanaConsultaTurno extends JFrame {
 		dniPaciente.setColumns(10);
 		
 		buscar = new JButton();
-		buscar.setIcon(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\clinicaMedica\\ClinicaMedica\\src\\icon\\ventanaAdministrador\\buscar.jpg"));
+		buscar.setIcon(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\proyectosJava\\clinicaMedica\\ClinicaMedica\\src\\icon\\ventanaAdministrador\\buscar.jpg"));
 		buscar.setBounds(99, 172, 50, 50);
 		laminaPrincipal.add(buscar);
 		
@@ -58,7 +58,7 @@ public class VentanaConsultaTurno extends JFrame {
 		laminaPrincipal.add(msjeBuscar);
 		
 		salir = new JButton();
-		salir.setIcon(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\clinicaMedica\\ClinicaMedica\\src\\icon\\ventanaMedico\\salir.png"));
+		salir.setIcon(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\proyectosJava\\clinicaMedica\\ClinicaMedica\\src\\icon\\ventanaMedico\\salir.png"));
 		salir.setBounds(312, 172, 50, 50);
 		laminaPrincipal.add(salir);
 		

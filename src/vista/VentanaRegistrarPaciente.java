@@ -96,11 +96,11 @@ public class VentanaRegistrarPaciente extends JFrame {
 		laminaPrincipal.add(ingresoEmail);
 		ingresoEmail.setColumns(10);
 		
-		guardar = new JButton(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\clinicaMedica\\ClinicaMedica\\src\\icon\\registrarPaciente\\guardar.png"));
+		guardar = new JButton(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\proyectosJava\\clinicaMedica\\ClinicaMedica\\src\\icon\\registrarPaciente\\guardar.png"));
 		guardar.setBounds(90, 389, 50, 50);
 		laminaPrincipal.add(guardar);
 		
-		cancelar = new JButton(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\clinicaMedica\\ClinicaMedica\\src\\icon\\ventanaMedico\\salir.png")); 
+		cancelar = new JButton(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\proyectosJava\\clinicaMedica\\ClinicaMedica\\src\\icon\\ventanaMedico\\salir.png")); 
 		cancelar.setBounds(231, 389, 50, 50);
 		laminaPrincipal.add(cancelar);
 		

@@ -49,22 +49,22 @@ public class VentanaAdministrador extends JFrame {
 		laminaPrincipal.add(msjePanelDeControl);
 
 		consultarTurno = new JButton("");
-		consultarTurno.setIcon(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\clinicaMedica\\ClinicaMedica\\src\\icon\\ventanaAdministrador\\consultarTurno.png"));
+		consultarTurno.setIcon(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\proyectosJava\\clinicaMedica\\ClinicaMedica\\src\\icon\\ventanaAdministrador\\consultarTurno.png"));
 		consultarTurno.setBounds(221, 98, 50, 50);
 		laminaPrincipal.add(consultarTurno);
 
 		asignarTurno = new JButton("");
-		asignarTurno.setIcon(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\clinicaMedica\\ClinicaMedica\\src\\icon\\ventanaAdministrador\\asignarTurno.png"));
+		asignarTurno.setIcon(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\proyectosJava\\clinicaMedica\\ClinicaMedica\\src\\icon\\ventanaAdministrador\\asignarTurno.png"));
 		asignarTurno.setBounds(68, 98, 50, 50);
 		laminaPrincipal.add(asignarTurno);
 
 		sobreTurno = new JButton("");
-		sobreTurno.setIcon(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\clinicaMedica\\ClinicaMedica\\src\\icon\\ventanaAdministrador\\sobreTurno.png"));
+		sobreTurno.setIcon(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\proyectosJava\\clinicaMedica\\ClinicaMedica\\src\\icon\\ventanaAdministrador\\sobreTurno.png"));
 		sobreTurno.setBounds(68, 192, 50, 50);
 		laminaPrincipal.add(sobreTurno);
 
 		registrarPaciente = new JButton("");
-		registrarPaciente.setIcon(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\clinicaMedica\\ClinicaMedica\\src\\icon\\ventanaAdministrador\\registrarPaciente.png"));
+		registrarPaciente.setIcon(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\proyectosJava\\clinicaMedica\\ClinicaMedica\\src\\icon\\ventanaAdministrador\\registrarPaciente.png"));
 		registrarPaciente.setBounds(221, 192, 50, 50);
 		laminaPrincipal.add(registrarPaciente);
 

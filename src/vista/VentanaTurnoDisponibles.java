@@ -56,12 +56,12 @@ public class VentanaTurnoDisponibles extends JFrame
 		filtrar = new JButton();
 		filtrar.setBounds(279, 373, 50, 50);
 		laminaPrincipal.add(filtrar);
-		filtrar.setIcon(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\clinicaMedica\\ClinicaMedica\\src\\icon\\ventanaMedico\\filtrar.png"));
+		filtrar.setIcon(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\proyectosJava\\clinicaMedica\\ClinicaMedica\\src\\icon\\ventanaMedico\\filtrar.png"));
 		
 		salir = new JButton();
 		salir.setBounds(489, 373, 50, 50);
 		laminaPrincipal.add(salir);
-		salir.setIcon(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\clinicaMedica\\ClinicaMedica\\src\\icon\\ventanaMedico\\salir.png"));
+		salir.setIcon(new ImageIcon("C:\\Users\\ArielPaez\\Desktop\\proyectosJava\\clinicaMedica\\ClinicaMedica\\src\\icon\\ventanaMedico\\salir.png"));
 		
 		JLabel msjeFiltrar = new JLabel("Filtrar");
 		msjeFiltrar.setBounds(283, 425, 46, 14);
